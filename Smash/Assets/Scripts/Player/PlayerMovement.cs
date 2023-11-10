@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    int m_maxSpeed;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Move(Vector2 vector2)
+    {
+        GetComponentInParent<Rigidbody2D>().velocity = vector2 * m_maxSpeed;    
     }
 }

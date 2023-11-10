@@ -6,12 +6,23 @@ using UnityEngine;
 [RequireComponent(typeof(RemoteAttack), typeof(Parade))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Components")]
+    PlayerMovement m_playerMovement;
+    PlayerLife m_playerLife;
+    BasicAttack m_basicAttack;
+    RemoteAttack m_remoteAttack;
+    Parade m_parade;
+
     void Start()
     {
-        
+        m_playerMovement = GetComponent<PlayerMovement>();        
+        m_playerLife = GetComponent<PlayerLife>();        
+        m_basicAttack = GetComponent<BasicAttack>();        
+        m_remoteAttack = GetComponent<RemoteAttack>();        
+        m_parade = GetComponent<Parade>();        
     }
     void Update()
     {
-        
+            
     }
 }
