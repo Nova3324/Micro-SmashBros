@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputsManager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    //Control one player
+    private PlayerInput m_playerInput;
+    private PlayerController m_playerController;
 
-    void Update()
+    void Awake()
     {
-        
+        m_playerInput = GetComponent<PlayerInput>();
+        m_playerController = PlayerManager.Instance.m_playerControllers[m_playerInput.playerIndex];
     }
 }
