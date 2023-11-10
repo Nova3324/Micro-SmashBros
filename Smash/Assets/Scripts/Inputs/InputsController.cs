@@ -3,17 +3,15 @@ using UnityEngine.InputSystem;
 
 public class InputsController : MonoBehaviour
 {
-    [SerializeField] PlayerController m_playerController;
-    void Start()
+    //Control one player
+    private PlayerInput m_playerInput;
+    private PlayerController m_playerController;
+
+    void Awake()
     {
-
+        m_playerInput = GetComponent<PlayerInput>();
+        m_playerController = PlayerManager.Instance.m_playerControllers[m_playerInput.playerIndex];
     }
-
-    void Update()
-    {
-
-    }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 stick = context.ReadValue<Vector2>();

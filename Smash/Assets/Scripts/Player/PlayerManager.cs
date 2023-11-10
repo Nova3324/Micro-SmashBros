@@ -26,7 +26,8 @@ public class PlayerManager : MonoBehaviour
         //get all player controllers
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).TryGetComponent(out PlayerController controller))
+            PlayerController controller = transform.GetChild(i).GetComponentInChildren<PlayerController>();
+            if (controller != null)
             {
                 m_playerControllers.Add(controller);
             }
