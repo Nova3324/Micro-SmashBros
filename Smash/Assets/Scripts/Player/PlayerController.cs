@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerLife),typeof(PlayerMovement),typeof(BasicAttack))]
-[RequireComponent(typeof(RemoteAttack), typeof(Parade))]
+[RequireComponent(typeof(RemoteAttack), typeof(Parade), typeof(ScriptableReader))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Components")]
@@ -24,5 +24,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
             
+    }
+
+    public void PlayerMovement(Vector2 vector2)
+    {
+        m_playerMovement.Move(vector2);
     }
 }

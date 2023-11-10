@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 580304736}
   - component: {fileID: 580304737}
+  - component: {fileID: 580304738}
   m_Layer: 0
   m_Name: Player Inputs
   m_TagString: Untagged
@@ -245,7 +246,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &580304737
 MonoBehaviour:
@@ -259,8 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
-  m_NotificationBehavior: 0
+  m_Actions: {fileID: -944628639613478452, guid: c6ec9a47fa8d1a1459a99dc6a9544d7b, type: 3}
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -271,13 +272,70 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 580304738}
+        m_TargetAssemblyTypeName: InputsController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dd28efef-ab7a-4525-bbf6-8420c028141b
+    m_ActionName: Game/Move
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a7e26877-5383-4efb-bac6-cbea4feeb88d
+    m_ActionName: Game/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d6544ba-3228-45be-94ce-cf5da5f94e0b
+    m_ActionName: Game/Basic Attack
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 261f5bb7-0107-4827-b398-28abc1b89dc2
+    m_ActionName: Game/Remote Attack
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 458ec1e8-0af7-44b9-a0c9-4fd72adcd7a1
+    m_ActionName: Game/Parade
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28801d7e-c65e-46e6-b3e1-d1c575986505
+    m_ActionName: Game/Dash
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 120bc7ae-7ef9-4780-a207-7c0a90d08e1e
+    m_ActionName: Game/Start
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 386b3622-d657-415b-b005-fe5527307fd9
+    m_ActionName: Menus/Back
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1001 &2022689062
+--- !u!114 &580304738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580304735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3226cdbbc2849648841c1608be63a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerController: {fileID: 956143357}
+--- !u!1001 &818747879
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -285,29 +343,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3821662567440025752, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.9147
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821662567440025752, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.5232
-      objectReference: {fileID: 0}
     - target: {fileID: 4956649969386297014, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8328502154264525492, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8328502154264525492, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.3222275
       objectReference: {fileID: 0}
     - target: {fileID: 8328502154264525492, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4911685
       objectReference: {fileID: 0}
     - target: {fileID: 8328502154264525492, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -346,6 +396,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
+--- !u!114 &956143357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2459106215531452493, guid: 17b54da8334d0e8499efb8f892dbe15a, type: 3}
+  m_PrefabInstance: {fileID: 818747879}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3242e12ae012e534d9ce663f4546d5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2065170405
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +418,7 @@ GameObject:
   - component: {fileID: 2065170407}
   - component: {fileID: 2065170406}
   - component: {fileID: 2065170408}
+  - component: {fileID: 2065170409}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -429,7 +491,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2065170408
 Rigidbody2D:
@@ -458,3 +520,48 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!61 &2065170409
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065170405}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
