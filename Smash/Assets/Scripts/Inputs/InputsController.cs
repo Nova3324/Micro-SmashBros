@@ -7,6 +7,8 @@ public class InputsController : MonoBehaviour
     private PlayerInput m_playerInput;
     private PlayerController m_playerController;
 
+    public Vector2 joystick;
+
     void Awake()
     {
         m_playerInput = GetComponent<PlayerInput>();
@@ -14,8 +16,8 @@ public class InputsController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 stick = context.ReadValue<Vector2>();
-        m_playerController.PlayerMovement(stick);
+        joystick = context.ReadValue<Vector2>();
+        m_playerController.PlayerMovement(joystick);
     }
 }
 
