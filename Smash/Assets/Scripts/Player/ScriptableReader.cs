@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ScriptableReader : MonoBehaviour
 {
-    public PlayerInfo m_playerInfo;
+    [SerializeField] private PlayerInfo m_playerInfo;
 
-    public float m_mass;
-    public float m_maxSpeed;
-    public float m_basicAttack;
-    public float m_remoteAttack;
+    [HideInInspector] public float m_mass { get; private set; }
+    [HideInInspector] public float m_maxSpeed { get; private set; }
+    [HideInInspector] public float m_basicAttack { get; private set; }
+    [HideInInspector] public float m_remoteAttack { get; private set; }
 
     void Start()
     {
