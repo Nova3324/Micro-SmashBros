@@ -7,6 +7,7 @@ public class HitBoxDealDamage : MonoBehaviour
     private Transform m_playerAttacker;
 
     [HideInInspector] public int m_atkDamage;
+    [HideInInspector] public bool m_isPassThroughPlayer = true;
 
     private void OnEnable()
     {
@@ -32,7 +33,14 @@ public class HitBoxDealDamage : MonoBehaviour
                     Debug.Log(playerC.transform.parent.gameObject.name);
                     m_PlayersHitted.Add(playerC);
 
+                    //Dmg
                     playerC.m_playerLife.TakeDamage(m_atkDamage, m_playerAttacker);
+
+                    //Continue or not if collid player
+                    if (!m_isPassThroughPlayer)
+                    {
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }

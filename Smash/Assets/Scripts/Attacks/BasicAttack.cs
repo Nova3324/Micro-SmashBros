@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 
 public class BasicAttack : MonoBehaviour
 {
@@ -13,8 +12,9 @@ public class BasicAttack : MonoBehaviour
     [Header("hit box move")]
     [SerializeField] private Transform m_trsPunchOrigin;
     [SerializeField] private Transform m_trsPunchHitBox;
+
     private float m_currentDuration;
-    private Vector2 m_atkDirection;
+    private Vector2 m_atkDirection = new();
 
     /*----------------------------------------------------------*/
 
@@ -27,7 +27,7 @@ public class BasicAttack : MonoBehaviour
 
     public void SetAttackDirection(Vector2 direction)
     {
-        if (direction.magnitude <= 1) 
+        if (direction.magnitude <= 1 && direction.magnitude > 0)
         {
             m_atkDirection = direction;
         }
@@ -47,7 +47,6 @@ public class BasicAttack : MonoBehaviour
 
         StartCoroutine(MovePunchHitbox(m_atkDirection));
     }
-
 
     /*----------------------------------------------------------*/
 
