@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLife
@@ -45,28 +44,15 @@ public class PlayerLife
         m_damageTaken += damage;
         m_damageTaken = Mathf.Clamp(m_damageTaken, 0, 999);
 
-        Debug.Log(m_playerController.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+        Debug.Log(m_playerController.transform.parent.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
 
         Knockback(damage, attakerTrs);
     }
 
     public bool IsKickedOut()
     {
-        Debug.Log(m_cam.orthographicSize);
-
-        //define Air Zone
-        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
-        float sizeMultiplicator = 1.5f;
-
-        Rect airRectZone = new();
-        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
-        float width = height * (16f / 9f);
-        float x = m_cam.transform.position.x - width / 2f;
-        float y = m_cam.transform.position.y - height / 2f;
-        airRectZone.Set(x, y, width, height);
-
         //if the player is not in the Air Zone
-        if (!airRectZone.Contains(m_playerTrs.position))
+        if (!AirZone(1.5f).Contains(m_playerTrs.position))
         {
             KickedOut();
             return true;
@@ -83,7 +69,7 @@ public class PlayerLife
         m_life--;
         m_damageTaken = 0;
 
-        Debug.Log(m_playerController.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+        Debug.Log(m_playerController.transform.parent.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
         
         Respawn();
 
@@ -119,4 +105,19 @@ public class PlayerLife
         //TODO reset velocity
         //TODO become invincible for 3s
     } 
+
+    private Rect AirZone(float sizeMultiplicator = 1f)
+    {
+        //if sizeMultiplicator == 1 -> Air zone = camOrthoSize
+        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
+
+        Rect airRectZone = new();
+        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
+        float width = height * (16f / 9f);
+        float x = m_cam.transform.position.x - width / 2f;
+        float y = m_cam.transform.position.y - height / 2f;
+        airRectZone.Set(x, y, width, height);
+
+        return airRectZone;
+    }
 }
