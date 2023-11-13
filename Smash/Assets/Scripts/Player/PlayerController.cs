@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
         m_spawnPos = transform.parent.position;
     }
 
+    private void Update()
+    {
+        m_playerLife.IsKickedOut();
+    }
+
     public void PlayerMovement(Vector2 vector2)
     {
         m_playerMovement.Move(vector2);

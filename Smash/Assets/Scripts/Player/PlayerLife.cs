@@ -1,15 +1,21 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLife
 {
+    //player components
     private PlayerController m_playerController;
     private ScriptableReader m_playerStats;
     private PlayerMovement m_playerMovement;
     private Transform m_playerTrs;
 
-    public bool m_isInvicible;
+    private Camera m_cam;
 
+    //life
     private int m_life = 3;
+
+    //damage
+    public bool m_isInvicible;
     private int m_damageTaken = 0;
 
     //knockback
@@ -23,6 +29,8 @@ public class PlayerLife
         m_playerStats = playerController.m_playerStats;
         m_playerMovement = playerController.m_playerMovement;
         m_playerTrs = playerTransform;
+
+        m_cam = Camera.main;
     }
 
     /*----------------------------------------------------------*/
@@ -42,25 +50,52 @@ public class PlayerLife
         Knockback(damage, attakerTrs);
     }
 
-    public void KickedOut()
+    public bool IsKickedOut()
+    {
+        Debug.Log(m_cam.orthographicSize);
+
+        //define Air Zone
+        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
+        float sizeMultiplicator = 1.5f;
+
+        Rect airRectZone = new();
+        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
+        float width = height * (16f / 9f);
+        float x = m_cam.transform.position.x - width / 2f;
+        float y = m_cam.transform.position.y - height / 2f;
+        airRectZone.Set(x, y, width, height);
+
+        //if the player is not in the Air Zone
+        if (!airRectZone.Contains(m_playerTrs.position))
+        {
+            KickedOut();
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /*----------------------------------------------------------*/
+
+    private void KickedOut()
     {
         m_life--;
         m_damageTaken = 0;
 
         Debug.Log(m_playerController.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+        
+        Respawn();
 
-
-        if (m_life > 0)
-        {
-            Respawn();
-        }
-        else
-        {
-            //TODO Game Over
-        }
+        //if (m_life > 0)
+        //{
+        //    Respawn();
+        //}
+        //else
+        //{
+        //    //TODO Game Over
+        //}
     }
-
-    /*----------------------------------------------------------*/
 
     private void Knockback(int damage, Transform attakerTrs)
     {
