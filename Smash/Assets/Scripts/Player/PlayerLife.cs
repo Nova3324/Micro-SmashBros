@@ -52,21 +52,8 @@ public class PlayerLife
 
     public bool IsKickedOut()
     {
-        Debug.Log(m_cam.orthographicSize);
-
-        //define Air Zone
-        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
-        float sizeMultiplicator = 1.5f;
-
-        Rect airRectZone = new();
-        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
-        float width = height * (16f / 9f);
-        float x = m_cam.transform.position.x - width / 2f;
-        float y = m_cam.transform.position.y - height / 2f;
-        airRectZone.Set(x, y, width, height);
-
         //if the player is not in the Air Zone
-        if (!airRectZone.Contains(m_playerTrs.position))
+        if (!AirZone(1.5f).Contains(m_playerTrs.position))
         {
             KickedOut();
             return true;
@@ -119,4 +106,19 @@ public class PlayerLife
         //TODO reset velocity
         //TODO become invincible for 3s
     } 
+
+    private Rect AirZone(float sizeMultiplicator = 1f)
+    {
+        //if sizeMultiplicator == 1 -> Air zone = camOrthoSize
+        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
+
+        Rect airRectZone = new();
+        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
+        float width = height * (16f / 9f);
+        float x = m_cam.transform.position.x - width / 2f;
+        float y = m_cam.transform.position.y - height / 2f;
+        airRectZone.Set(x, y, width, height);
+
+        return airRectZone;
+    }
 }
