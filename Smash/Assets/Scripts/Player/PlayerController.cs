@@ -7,12 +7,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Components")]
-    PlayerMovement m_playerMovement;
     PlayerLife m_playerLife;
     BasicAttack m_basicAttack;
     RemoteAttack m_remoteAttack;
     Parade m_parade;
-    ScriptableReader m_playerStats;
+
+    public PlayerMovement m_playerMovement { get; private set; }
+    public ScriptableReader m_playerStats { get; private set; }
+
+    //respawn
+    public Vector3 m_spawnPos { get; private set; }
 
     void Start()
     {
@@ -22,7 +26,9 @@ public class PlayerController : MonoBehaviour
         m_parade = GetComponent<Parade>();  
         m_playerStats = GetComponent<ScriptableReader>();
         
-        m_playerLife = new PlayerLife(m_playerStats, m_playerMovement);        
+        m_playerLife = new PlayerLife(this, transform.parent); 
+        
+        m_spawnPos = transform.parent.position;
     }
 
     public void PlayerMovement(Vector2 vector2)
