@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(PlayerMovement),typeof(BasicAttack))]
-[RequireComponent(typeof(RemoteAttack), typeof(Parade), typeof(ScriptableReader))]
+[RequireComponent(typeof(ChargedAttack), typeof(Parade), typeof(ScriptableReader))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Components")]
     BasicAttack m_basicAttack;
-    RemoteAttack m_remoteAttack;
+    ChargedAttack m_remoteAttack;
     Parade m_parade;
 
     public PlayerLife m_playerLife { get; private set; }
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         m_playerMovement = GetComponent<PlayerMovement>();        
         m_basicAttack = GetComponent<BasicAttack>();        
-        m_remoteAttack = GetComponent<RemoteAttack>();        
+        m_remoteAttack = GetComponent<ChargedAttack>();        
         m_parade = GetComponent<Parade>();  
         m_playerStats = GetComponent<ScriptableReader>();
         
