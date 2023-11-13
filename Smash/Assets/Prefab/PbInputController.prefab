@@ -79,7 +79,19 @@ MonoBehaviour:
     m_ActionId: a7e26877-5383-4efb-bac6-cbea4feeb88d
     m_ActionName: Game/Jump
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5017942569204018657}
+        m_TargetAssemblyTypeName: InputsController, Assembly-CSharp
+        m_MethodName: OnBasicAtk
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5d6544ba-3228-45be-94ce-cf5da5f94e0b
     m_ActionName: Game/Basic Attack
   - m_PersistentCalls:
@@ -102,6 +114,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 386b3622-d657-415b-b005-fe5527307fd9
     m_ActionName: Menus/Back
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5017942569204018657}
+        m_TargetAssemblyTypeName: InputsController, Assembly-CSharp
+        m_MethodName: OnAtkDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f8711bd1-9447-4bfd-afde-3d275e5ed169
+    m_ActionName: Game/AttackDirection[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Game

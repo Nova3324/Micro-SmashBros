@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLife
@@ -45,7 +44,7 @@ public class PlayerLife
         m_damageTaken += damage;
         m_damageTaken = Mathf.Clamp(m_damageTaken, 0, 999);
 
-        Debug.Log(m_playerController.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+        Debug.Log(m_playerController.transform.parent.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
 
         Knockback(damage, attakerTrs);
     }
@@ -70,7 +69,7 @@ public class PlayerLife
         m_life--;
         m_damageTaken = 0;
 
-        Debug.Log(m_playerController.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+        Debug.Log(m_playerController.transform.parent.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
         
         Respawn();
 

@@ -7,16 +7,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Components")]
-    PlayerLife m_playerLife;
     BasicAttack m_basicAttack;
     RemoteAttack m_remoteAttack;
     Parade m_parade;
 
+    public PlayerLife m_playerLife { get; private set; }
     public PlayerMovement m_playerMovement { get; private set; }
     public ScriptableReader m_playerStats { get; private set; }
 
     //respawn
     public Vector3 m_spawnPos { get; private set; }
+
+    /*----------------------------------------------------------*/
 
     void Start()
     {
@@ -36,8 +38,20 @@ public class PlayerController : MonoBehaviour
         m_playerLife.IsKickedOut();
     }
 
+    /*----------------------------------------------------------*/
+
     public void PlayerMovement(Vector2 vector2)
     {
         m_playerMovement.Move(vector2);
+    }
+
+    public void AttackDirection(Vector2 direction)
+    {
+        m_basicAttack.SetAttackDirection(direction);
+    }
+
+    public void LauchBasicAtk()
+    {
+        m_basicAttack.LaunchAttack();
     }
 }
