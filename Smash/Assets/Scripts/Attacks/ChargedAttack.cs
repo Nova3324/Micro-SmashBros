@@ -16,7 +16,6 @@ public class ChargedAttack: MonoBehaviour
     private float m_currentChargeTime;
     private Vector2 m_atkDirection = new();
 
-
     /*----------------------------------------------------------*/
 
     public void UpdtChargement()
@@ -46,6 +45,9 @@ public class ChargedAttack: MonoBehaviour
         {
             m_isCharging = true;
             m_currentChargeTime = 0;
+
+            PlayerController playerController = GetComponent<PlayerController>();
+            playerController.m_playerMovement.SetPlayerIsStatic(true);
         }
     }
 
@@ -53,6 +55,9 @@ public class ChargedAttack: MonoBehaviour
     {
         if (m_isCharging)
         {
+            PlayerController playerController = GetComponent<PlayerController>();
+            playerController.m_playerMovement.SetPlayerIsStatic(false);
+
             m_isCharging = false;
             StartCoroutine(CantCharge());
 
@@ -68,7 +73,7 @@ public class ChargedAttack: MonoBehaviour
                 }
 
                 Debug.Log(m_atkDirection + ", " + (m_currentChargeTime / m_maxChargeTime));
-                projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime), GetComponent<PlayerController>());
+                projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime), playerController);
             }
         }
     }

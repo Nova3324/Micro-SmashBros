@@ -132,4 +132,15 @@ public class PlayerMovement : MonoBehaviour
             m_isJumping = true;
         }
     }
+
+    public void SetPlayerIsStatic(bool isStatic)
+    {
+        m_isStatic = isStatic;
+
+        //stop x move
+        if (m_isStatic)
+        {
+            m_rigidbody.velocity = m_rigidbody.velocity * Vector2.up;
+        }
+    }
 }
