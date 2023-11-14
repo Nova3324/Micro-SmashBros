@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ChargedAttack: MonoBehaviour
@@ -5,13 +6,16 @@ public class ChargedAttack: MonoBehaviour
     [Header("atk params")]
     [SerializeField] private GameObject m_pbProjectile;
     [SerializeField] private float m_maxChargeTime;
+    [SerializeField] private float m_refreshTime;
 
     [Header("hit box move")]
     [SerializeField] private Transform m_trsAtkOrigin;
 
     private bool m_isCharging;
+    private bool m_isCanCharge = true;
     private float m_currentChargeTime;
     private Vector2 m_atkDirection = new();
+
 
     /*----------------------------------------------------------*/
 
@@ -38,7 +42,7 @@ public class ChargedAttack: MonoBehaviour
 
     public void StartAtkChargement()
     {
-        if (!m_isCharging) 
+        if (!m_isCharging && m_isCanCharge) 
         {
             m_isCharging = true;
             m_currentChargeTime = 0;
@@ -50,6 +54,7 @@ public class ChargedAttack: MonoBehaviour
         if (m_isCharging)
         {
             m_isCharging = false;
+            StartCoroutine(CantCharge());
 
             //Throw projectile
             GameObject goProjectile = Instantiate(m_pbProjectile, m_trsAtkOrigin.position, Quaternion.identity);
@@ -66,5 +71,22 @@ public class ChargedAttack: MonoBehaviour
                 projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime), GetComponent<PlayerController>());
             }
         }
+    }
+
+    /*----------------------------------------------------------*/
+
+    private IEnumerator CantCharge()
+    {
+        m_isCanCharge = false;
+        float timeSinceAtk = 0f;
+
+        while(timeSinceAtk < m_refreshTime)
+        {
+            timeSinceAtk += Time.deltaTime;
+            yield return null;
+        }
+
+        if (timeSinceAtk >= m_refreshTime)
+            m_isCanCharge = true;
     }
 }
