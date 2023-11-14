@@ -55,7 +55,15 @@ public class ChargedAttack: MonoBehaviour
             GameObject goProjectile = Instantiate(m_pbProjectile, m_trsAtkOrigin.position, Quaternion.identity);
             if (goProjectile.TryGetComponent(out Projectile projectile))
             {
-                projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime));
+                //Atk where player look
+                if (m_atkDirection == Vector2.zero)
+                {
+                    //TODO where player look
+                    m_atkDirection = Vector2.left;
+                }
+
+                Debug.Log(m_atkDirection + ", " + (m_currentChargeTime / m_maxChargeTime));
+                projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime), GetComponent<PlayerController>());
             }
         }
     }

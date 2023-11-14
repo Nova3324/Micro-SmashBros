@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField][Range(0, 100)] private int m_maxDamage; //charged max time
 
     [SerializeField] private Transform m_trsHitBox;
+    private Rigidbody2D m_rb;
 
     [Header("Initial Scale")]
     [SerializeField] private float m_timeToMaxScale;
@@ -17,51 +19,63 @@ public class Projectile : MonoBehaviour
 
     [Header("Charged Atk Params")]
     private Vector3 m_direction;
-    [Range(0f, 1f)] private float m_chargeRatio;
-
-    private void FixedUpdate()
-    {
-        
-    }
+    private float m_chargeRatio; // between 0 and 1
 
     /*----------------------------------------------------------*/
 
-    public void Throw(Vector3 direction, float chargeRatio)
+    private void Awake()
+    {
+        m_rb = GetComponent<Rigidbody2D>();
+        Assert.IsNotNull(m_rb);
+    }
+
+    public void Throw(Vector2 direction, float chargeRatio, PlayerController playerController)
     {
         m_direction = direction;
         m_chargeRatio = chargeRatio;
+        Move();
 
         m_trsHitBox.gameObject.SetActive(true);
         if (m_trsHitBox.TryGetComponent(out HitBoxDealDamage hitBoxScript))
         {
             if (m_isChargementIncreaseDmg)
             {
+                hitBoxScript.SetAttacker(playerController);
                 hitBoxScript.m_atkDamage = Mathf.RoundToInt(m_maxDamage * m_chargeRatio);
                 hitBoxScript.m_isPassThroughPlayer = m_isPassThroughPlayers;
             }
             else
             {
+                hitBoxScript.SetAttacker(playerController);
                 hitBoxScript.m_atkDamage = m_maxDamage;
                 hitBoxScript.m_isPassThroughPlayer = m_isPassThroughPlayers;
             }
         }
+
+        //scale anim
+        StartCoroutine(Scale0To1());
     }
 
     /*----------------------------------------------------------*/
 
     private IEnumerator Scale0To1()
     {
-        m_currentScaleTime = 0;
+        //Start at 10% of scale
+        m_currentScaleTime = 0.1f * m_timeToMaxScale;
 
         while (m_currentScaleTime < m_timeToMaxScale)
         {
             //scale hitbox
             m_currentScaleTime += Time.deltaTime;
             m_currentScaleTime = Mathf.Clamp(m_currentScaleTime, 0, m_timeToMaxScale);
-            transform.localScale = Vector3.one * (m_timeToMaxScale / m_currentScaleTime);
+            transform.localScale = Vector3.one * (m_currentScaleTime / m_timeToMaxScale);
 
             yield return null;
         }
     }
 
+    private void Move()
+    {
+        m_rb.velocity = m_direction * m_speed;
+    }
 }

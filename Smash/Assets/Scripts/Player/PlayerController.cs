@@ -58,10 +58,21 @@ public class PlayerController : MonoBehaviour
     public void AttackDirection(Vector2 direction)
     {
         m_basicAttack.SetAttackDirection(direction);
+        m_chargedAttack.SetAttackDirection(direction);
     }
 
-    public void LauchBasicAtk()
+    public void LaunchBasicAtk()
     {
         m_basicAttack.LaunchAttack();
+    }
+
+    public void ChargeChargedAtk()
+    {
+        m_chargedAttack.StartAtkChargement();
+    }
+
+    public void LaunchChargedAtk()
+    {
+        m_chargedAttack.LaunchAtk();
     }
 }
