@@ -55,7 +55,6 @@ public class InputsController : MonoBehaviour
         else if (context.canceled)
         {
             m_playerController.LaunchChargedAtk();
-
         }
     }
 }

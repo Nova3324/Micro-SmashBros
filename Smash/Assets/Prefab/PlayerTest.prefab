@@ -124,7 +124,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -483,7 +483,6 @@ MonoBehaviour:
   m_scriptableReader: {fileID: 952691304798120129}
   m_detectCollisions: {fileID: 6459868258108823229}
   m_gravity: {x: 0, y: -9.81}
-  m_isStatic: 0
   m_leftDirectionIsTrigger: 0
   m_rightDirectionIsTrigger: 0
 --- !u!114 &6998275338227155863
@@ -517,7 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_pbProjectile: {fileID: 3249085837187150689, guid: 06e324b12cf9b0b498e7216fc79dc9f5, type: 3}
   m_maxChargeTime: 3
-  m_refreshTime: 1
+  m_refreshTime: 0.5
   m_trsAtkOrigin: {fileID: 5314272383962320924}
 --- !u!114 &2947350436155547051
 MonoBehaviour:

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerLife
 {
@@ -8,7 +9,7 @@ public class PlayerLife
     private PlayerMovement m_playerMovement;
     private Transform m_playerTrs;
 
-    private Camera m_cam;
+    private AirArea m_camAirArea;
 
     //life
     private int m_life = 3;
@@ -29,7 +30,8 @@ public class PlayerLife
         m_playerMovement = playerController.m_playerMovement;
         m_playerTrs = playerTransform;
 
-        m_cam = Camera.main;
+        m_camAirArea = Camera.main.GetComponent<AirArea>();
+        Assert.IsNotNull(m_camAirArea);
     }
 
     /*----------------------------------------------------------*/
@@ -52,7 +54,7 @@ public class PlayerLife
     public bool IsKickedOut()
     {
         //if the player is not in the Air Zone
-        if (!AirZone(1.5f).Contains(m_playerTrs.position))
+        if (!m_camAirArea.IsInAirZone(m_playerTrs.position))
         {
             KickedOut();
             return true;
@@ -105,19 +107,4 @@ public class PlayerLife
         //TODO reset velocity
         //TODO become invincible for 3s
     } 
-
-    private Rect AirZone(float sizeMultiplicator = 1f)
-    {
-        //if sizeMultiplicator == 1 -> Air zone = camOrthoSize
-        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
-
-        Rect airRectZone = new();
-        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
-        float width = height * (16f / 9f);
-        float x = m_cam.transform.position.x - width / 2f;
-        float y = m_cam.transform.position.y - height / 2f;
-        airRectZone.Set(x, y, width, height);
-
-        return airRectZone;
-    }
 }

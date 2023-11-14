@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 22
   m_isChargementIncreaseDmg: 1
-  m_isPassThroughPlayers: 1
+  m_isPassThroughPlayers: 0
   m_maxDamage: 20
   m_trsHitBox: {fileID: 4344089142674207093}
   m_timeToMaxScale: 0.2

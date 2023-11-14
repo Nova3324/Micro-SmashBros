@@ -25,6 +25,14 @@ public class HitBoxDealDamage : MonoBehaviour
             return;
         }
 
+        //Collid with solid
+        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Solid")) &&
+            m_parentTrs != transform)
+        {
+            //TODO anim destroy
+            Destroy(m_parentTrs.gameObject);
+        }
+
         //collid with player
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {

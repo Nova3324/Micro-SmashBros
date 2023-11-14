@@ -21,6 +21,8 @@ public class Projectile : MonoBehaviour
     private Vector3 m_direction;
     private float m_chargeRatio; // between 0 and 1
 
+    private AirArea m_airArea;
+
     /*----------------------------------------------------------*/
 
     private void Awake()
@@ -28,6 +30,23 @@ public class Projectile : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         Assert.IsNotNull(m_rb);
     }
+
+    private void Start()
+    {
+        m_airArea = Camera.main.GetComponent<AirArea>();
+
+        Assert.IsNotNull(m_airArea);
+    }
+
+    private void Update()
+    {
+        if (!m_airArea.IsInAirZone(m_trsHitBox.position))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    /*----------------------------------------------------------*/
 
     public void Throw(Vector2 direction, float chargeRatio, PlayerController playerController)
     {
