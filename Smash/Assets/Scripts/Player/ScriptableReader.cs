@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScriptableReader : MonoBehaviour
 {
-    [SerializeField] PlayerInfo m_playerInfo;
+    [SerializeField] private PlayerInfo m_playerInfo;
 
     [HideInInspector] public float m_mass { get; private set; }
     [HideInInspector] public float m_maxSpeed { get; private set; }

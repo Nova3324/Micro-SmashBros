@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Smash/Assets/Scripts/Inputs/PlayerInputs.cs.meta
+guid: f035acec85a0d2249bba0135e545b8d3
+========
+guid: df75794b695b34542a47ee8ff8000e0c
+>>>>>>>> feat-ChargedAtk:Smash/Assets/Scripts/Attacks/HitBoxDealDamage.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

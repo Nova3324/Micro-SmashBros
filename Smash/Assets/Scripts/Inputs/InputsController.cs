@@ -28,5 +28,18 @@ public class InputsController : MonoBehaviour
             m_playerController.PlayerJump();
         }
     }
+
+    public void OnAtkDirection(InputAction.CallbackContext context)
+    {
+        m_playerController.AttackDirection(context.ReadValue<Vector2>());
+    }
+
+    public void OnBasicAtk(InputAction.CallbackContext context)
+    {
+        if (context.performed) 
+        {
+            m_playerController.LauchBasicAtk();
+        }
+    }
 }
 
