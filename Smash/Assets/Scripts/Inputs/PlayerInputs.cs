@@ -89,6 +89,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AtkDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""c7d1fa1b-c6d5-4c0e-9c71-ff499cdb276d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,61 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a1089cce-10e5-4264-b681-7bd88caf1408"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AtkDirection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d8d7c14c-bd17-482c-ab33-4358aa0e98a4"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AtkDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9b829087-f41f-4bac-9bdd-b432b4e48ca8"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AtkDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9714b624-60a9-4aa7-9db0-02f2b24981c9"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AtkDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b3da9939-0ab1-41d3-9954-32056b1bd21b"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AtkDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -267,6 +331,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Game_Parade = m_Game.FindAction("Parade", throwIfNotFound: true);
         m_Game_Dash = m_Game.FindAction("Dash", throwIfNotFound: true);
         m_Game_Start = m_Game.FindAction("Start", throwIfNotFound: true);
+        m_Game_AtkDirection = m_Game.FindAction("AtkDirection", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Back = m_Menus.FindAction("Back", throwIfNotFound: true);
@@ -338,6 +403,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Parade;
     private readonly InputAction m_Game_Dash;
     private readonly InputAction m_Game_Start;
+    private readonly InputAction m_Game_AtkDirection;
     public struct GameActions
     {
         private @PlayerInputs m_Wrapper;
@@ -349,6 +415,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Parade => m_Wrapper.m_Game_Parade;
         public InputAction @Dash => m_Wrapper.m_Game_Dash;
         public InputAction @Start => m_Wrapper.m_Game_Start;
+        public InputAction @AtkDirection => m_Wrapper.m_Game_AtkDirection;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -379,6 +446,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Start.started += instance.OnStart;
             @Start.performed += instance.OnStart;
             @Start.canceled += instance.OnStart;
+            @AtkDirection.started += instance.OnAtkDirection;
+            @AtkDirection.performed += instance.OnAtkDirection;
+            @AtkDirection.canceled += instance.OnAtkDirection;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -404,6 +474,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Start.started -= instance.OnStart;
             @Start.performed -= instance.OnStart;
             @Start.canceled -= instance.OnStart;
+            @AtkDirection.started -= instance.OnAtkDirection;
+            @AtkDirection.performed -= instance.OnAtkDirection;
+            @AtkDirection.canceled -= instance.OnAtkDirection;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -485,6 +558,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnParade(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnAtkDirection(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {
