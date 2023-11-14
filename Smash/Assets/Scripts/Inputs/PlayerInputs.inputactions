@@ -69,9 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AttackDirection",
+                    "name": "AtkDirection",
                     "type": "Value",
-                    "id": "f8711bd1-9447-4bfd-afde-3d275e5ed169",
+                    "id": "c7d1fa1b-c6d5-4c0e-9c71-ff499cdb276d",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -104,7 +104,7 @@
                 {
                     "name": "",
                     "id": "45214551-ec34-42dc-aeb7-9496c2c004be",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -115,7 +115,7 @@
                 {
                     "name": "",
                     "id": "06dade82-2e23-4ce5-80f8-cbe679469f83",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -202,56 +202,56 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "308354ca-3d58-4ffd-a45e-bb26498e1dea",
-                    "path": "2DVector(mode=1)",
+                    "id": "a1089cce-10e5-4264-b681-7bd88caf1408",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AttackDirection",
+                    "action": "AtkDirection",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "3bc2fb3d-9ac8-4424-b470-012d348438a7",
+                    "id": "d8d7c14c-bd17-482c-ab33-4358aa0e98a4",
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "AttackDirection",
+                    "action": "AtkDirection",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "6bee72e5-8c6b-4090-88d3-005bce306136",
+                    "id": "9b829087-f41f-4bac-9bdd-b432b4e48ca8",
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "AttackDirection",
+                    "action": "AtkDirection",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "cba11412-7c40-41a0-8281-5f2bde09065f",
+                    "id": "9714b624-60a9-4aa7-9db0-02f2b24981c9",
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "AttackDirection",
+                    "action": "AtkDirection",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "11865d61-d4fe-4dd0-bd8d-c2b1bf59eb28",
+                    "id": "b3da9939-0ab1-41d3-9954-32056b1bd21b",
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "AttackDirection",
+                    "action": "AtkDirection",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

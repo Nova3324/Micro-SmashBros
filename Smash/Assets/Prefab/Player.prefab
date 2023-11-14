@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94181dc5ac6657d4d87ed079c55e64c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_capsuleCollider: {fileID: 5105305034663550875}
   m_downOffset: 0
+  m_rightOffset: 0
+  m_leftOffset: 0
 --- !u!1 &1868117319637550636
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,8 +59,8 @@ GameObject:
   - component: {fileID: 4914005559722804381}
   - component: {fileID: 2132164875866487824}
   - component: {fileID: 3148362411298452839}
-  - component: {fileID: 839277002163762451}
-  m_Layer: 6
+  - component: {fileID: 8498486817665471665}
+  m_Layer: 0
   m_Name: PunchHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +169,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &839277002163762451
+--- !u!114 &8498486817665471665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +178,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1868117319637550636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df75794b695b34542a47ee8ff8000e0c, type: 3}
+  m_Script: {fileID: 11500000, guid: f035acec85a0d2249bba0135e545b8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_atkDamage: 0
+  m_isPassThroughPlayer: 1
 --- !u!1 &4124121692912764510
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5314272383962320924}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PunchOrigin
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -327,7 +332,7 @@ Transform:
   - {fileID: 3558645011712019501}
   - {fileID: 2123604683322455238}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7128629115133586533
 Rigidbody2D:
@@ -337,15 +342,15 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4956649969386297014}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 185caf53c0ca33c4fa02a20725a98f52, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -354,8 +359,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &6841870543309558884
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +408,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -476,9 +481,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_scriptableReader: {fileID: 952691304798120129}
   m_detectCollisions: {fileID: 6459868258108823229}
-  m_isStatic: 0
   m_gravity: {x: 0, y: -9.81}
-  m_currentGravity: {x: 0, y: 0}
+  m_isStatic: 0
+  m_leftDirectionIsTrigger: 0
+  m_rightDirectionIsTrigger: 0
 --- !u!114 &6998275338227155863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e5d16d3ac5efe46b95202d694a8e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_damage: 2
+  m_range: 2.5
+  m_atkDuration: 0.1
   m_trsPunchOrigin: {fileID: 5314272383962320924}
   m_trsPunchHitBox: {fileID: 4914005559722804381}
 --- !u!114 &4359545096037501529
@@ -505,6 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bf591491b16164ca7d02b189f10e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pbProjectile: {fileID: 0}
+  m_maxChargeTime: 0
+  m_trsAtkOrigin: {fileID: 0}
 --- !u!114 &2947350436155547051
 MonoBehaviour:
   m_ObjectHideFlags: 0

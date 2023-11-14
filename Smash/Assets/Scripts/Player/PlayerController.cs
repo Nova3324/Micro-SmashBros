@@ -42,6 +42,12 @@ public class PlayerController : MonoBehaviour
     public void PlayerMovement(Vector2 vector2)
     {
         m_playerMovement.Move(vector2);
+        m_playerMovement.JoystickDirection(vector2);
+    }
+
+    public void PlayerJump()
+    {
+        m_playerMovement.Jump();
     }
 
     public void AttackDirection(Vector2 direction)
