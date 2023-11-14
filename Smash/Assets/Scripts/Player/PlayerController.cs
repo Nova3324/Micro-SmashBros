@@ -21,14 +21,15 @@ public class PlayerController : MonoBehaviour
         m_remoteAttack = GetComponent<RemoteAttack>();        
         m_parade = GetComponent<Parade>();        
     }
-    void Update()
-    {
-            
-    }
 
     public void PlayerMovement(Vector2 vector2)
     {
         m_playerMovement.Move(vector2);
         m_playerMovement.JoystickDirection(vector2);
+    }
+
+    public void PlayerJump()
+    {
+        m_playerMovement.Jump();
     }
 }
