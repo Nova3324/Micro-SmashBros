@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Gravity")]
     [SerializeField] private float m_gravityMultiplier;
-    [SerializeField] Vector2 m_gravity;
+    private Vector2 m_gravity;
     private Vector2 m_currentGravity;
 
     [HideInInspector] public bool m_isGrounded = false;
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_rigidbody = GetComponentInParent<Rigidbody2D>();
 
+        m_gravity = new Vector2(0f, -((m_maxHeight / m_deltaMaxHeight) * 2f / m_deltaMaxHeight) * 1.2f);
         m_currentGravity = m_gravity;
     }
 
@@ -63,10 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 vector2)
     {
-        if (!m_isStatic)
-        {
-            m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
-        }
+        m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
     }
 
     public void ResetTimeToReachMaxHeight()

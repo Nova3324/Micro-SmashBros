@@ -44,11 +44,8 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerMovement(Vector2 vector2)
     {
-        if (m_isCanAct)
-        {
-            m_playerMovement.Move(vector2);
-            m_playerMovement.JoystickDirection(vector2);
-        }
+        m_playerMovement.Move(vector2);
+        m_playerMovement.JoystickDirection(vector2);
     }
 
     public void PlayerJump()
@@ -126,7 +123,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator CantActDuring(float duration)
     {
         m_isCanAct = false;
+        m_playerMovement.m_isStatic = true;
         yield return new WaitForSeconds(duration);
         m_isCanAct = true;
+        m_playerMovement.m_isStatic = false;
     }
 }
