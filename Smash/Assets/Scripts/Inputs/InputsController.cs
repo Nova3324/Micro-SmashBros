@@ -27,6 +27,10 @@ public class InputsController : MonoBehaviour
         {
             m_playerController.PlayerJump();
         }
+        if(context.canceled) 
+        { 
+            m_playerController.ResetJump();
+        }
     }
 
     public void OnAtkDirection(InputAction.CallbackContext context)

@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         m_playerMovement.Jump();
     }
 
+    public void ResetJump()
+    {
+        m_playerMovement.ResetTimeToReachMaxHeight();
+    }
+
     public void AttackDirection(Vector2 direction)
     {
         m_basicAttack.SetAttackDirection(direction);
