@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pbProjectile: {fileID: 3249085837187150689, guid: 06e324b12cf9b0b498e7216fc79dc9f5, type: 3}
-  m_maxChargeTime: 1.5
+  m_maxChargeTime: 0.5
   m_refreshTime: 0.5
   m_trsAtkOrigin: {fileID: 5314272383962320924}
 --- !u!114 &2947350436155547051

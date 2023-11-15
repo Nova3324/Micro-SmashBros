@@ -126,8 +126,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Gravity()
     {
+        if (m_isStatic)
+        {
+            m_rigidbody.velocity = m_rigidbody.velocity * Vector2.right;
+            m_currentGravity = Vector2.zero;
+        }
         //Gravity
-        if (m_isJumping == false && m_isEndJumping == false)
+        else if (m_isJumping == false && m_isEndJumping == false)
         {
             if (m_isGrounded == true)
             {
