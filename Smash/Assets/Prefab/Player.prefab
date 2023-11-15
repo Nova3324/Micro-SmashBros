@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821013717844073425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.763, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.68892}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -90,7 +90,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.339016, y: 0.19384623}
+  m_Size: {x: 1.3, y: 0.15}
   m_EdgeRadius: 0
 --- !u!1 &1868117319637550636
 GameObject:
@@ -526,19 +526,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_scriptableReader: {fileID: 952691304798120129}
   m_detectCollisions: {fileID: 6459868258108823229}
-  m_gravity: {x: 0, y: -60}
   m_gravityMultiplier: 1
-  m_test: {x: 0, y: 0}
+  m_gravity: {x: 0, y: -60}
   m_isGrounded: 0
   m_airDrag: 0.7
-  m_jumpCount: 0
-  m_isJumping: 0
-  m_jumpForce: 0
   m_maxJump: 2
   m_maxHeight: 5
   m_deltaMaxHeight: 0.5
+  m_jumpCount: 0
+  m_isJumping: 0
   m_isStatic: 0
-  m_joystickDirection: {x: 0, y: 0}
 --- !u!114 &6998275338227155863
 MonoBehaviour:
   m_ObjectHideFlags: 0

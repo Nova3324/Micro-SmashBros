@@ -88,10 +88,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movements()
     {
-        if (!m_isGrounded)
-            m_rigidbody.velocity = new Vector2(m_lateralMove * m_airDrag, m_rigidbody.velocity.y);
-        else
-            m_rigidbody.velocity = new Vector2(m_lateralMove, m_rigidbody.velocity.y);
+        if (!m_isStatic)
+        {
+            if (!m_isGrounded)
+                m_rigidbody.velocity = new Vector2(m_lateralMove * m_airDrag, m_rigidbody.velocity.y);
+            else
+                m_rigidbody.velocity = new Vector2(m_lateralMove, m_rigidbody.velocity.y);
+        }
     }
 
     private void JumpTimer()
