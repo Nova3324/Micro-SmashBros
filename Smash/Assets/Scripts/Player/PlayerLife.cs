@@ -36,7 +36,7 @@ public class PlayerLife
 
     /*----------------------------------------------------------*/
 
-    public void TakeDamage(int damage, Transform attakerTrs)
+    public void TakeDamage(int damage, Vector3 atkDirection)
     {
         if (m_isInvicible)
         {
@@ -48,7 +48,7 @@ public class PlayerLife
 
         Debug.Log(m_playerController.transform.parent.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
 
-        Knockback(damage, attakerTrs);
+        Knockback(damage, atkDirection);
     }
 
     public bool IsKickedOut()
@@ -85,26 +85,25 @@ public class PlayerLife
         //}
     }
 
-    private void Knockback(int damage, Transform attakerTrs)
+    private void Knockback(int damage, Vector3 atkDirection)
     {
         //calcul knockback intensity
         float knockback = Mathf.Pow(m_damageTaken, 2f) * m_knockbackCoef * damage;
         knockback /= m_playerStats.m_mass;
 
-        Vector3 dir = attakerTrs.position - m_playerTrs.position;
-        dir += Vector3.up;
-        dir.Normalize();
+        atkDirection += Vector3.up * 0.5f;
+        atkDirection.Normalize();
 
-        Vector3 kbForce = dir * knockback;
+        Vector3 kbForce = atkDirection * knockback;
 
-        //TODO add to player movement
+        m_playerMovement.AddKnockBack(kbForce);
     }
 
     private void Respawn()
     {
         m_playerTrs.position = m_playerController.m_spawnPos;
 
-        //TODO reset velocity
+        m_playerMovement.ResetVelocity();
         //TODO become invincible for 3s
     } 
 }

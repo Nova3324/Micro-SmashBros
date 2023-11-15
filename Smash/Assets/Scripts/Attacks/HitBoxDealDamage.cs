@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 
 public class HitBoxDealDamage : MonoBehaviour
 {
     private List<PlayerController> m_PlayersHitted = new();
     private Transform m_playerAttacker;
+    private Vector3 m_atkDir;
 
     [HideInInspector] public int m_atkDamage;
     [HideInInspector] public bool m_isPassThroughPlayer = true;
@@ -44,12 +46,18 @@ public class HitBoxDealDamage : MonoBehaviour
                 m_PlayersHitted.Add(playerC);
 
                 //Dmg
-                playerC.m_playerLife.TakeDamage(m_atkDamage, m_playerAttacker);
+                playerC.m_playerLife.TakeDamage(m_atkDamage, m_atkDir);
 
                 //Continue or not if collid player
                 if (!m_isPassThroughPlayer)
                 {
                     m_parentTrs.gameObject.SetActive(false);
+
+                    if (m_parentTrs != transform)
+                    {
+                        //TODO anim destroy
+                        Destroy(m_parentTrs.gameObject);
+                    }
                 }
             }
         }
@@ -57,12 +65,13 @@ public class HitBoxDealDamage : MonoBehaviour
 
     /*----------------------------------------------------------*/
 
-    public void SetAttacker(PlayerController playerController)
+    public void SetAttacker(PlayerController playerController, Vector3 atkDir)
     {
         m_PlayersHitted.Clear();
 
         //put itself
         m_PlayersHitted.Add(playerController);
         m_playerAttacker = playerController.transform;
+        m_atkDir = atkDir;
     }
 }

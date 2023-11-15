@@ -72,7 +72,6 @@ public class ChargedAttack: MonoBehaviour
                     m_atkDirection = Vector2.left;
                 }
 
-                Debug.Log(m_atkDirection + ", " + (m_currentChargeTime / m_maxChargeTime));
                 projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime), playerController);
             }
         }

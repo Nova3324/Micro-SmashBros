@@ -59,13 +59,13 @@ public class Projectile : MonoBehaviour
         {
             if (m_isChargementIncreaseDmg)
             {
-                hitBoxScript.SetAttacker(playerController);
+                hitBoxScript.SetAttacker(playerController, direction);
                 hitBoxScript.m_atkDamage = Mathf.RoundToInt(m_maxDamage * m_chargeRatio);
                 hitBoxScript.m_isPassThroughPlayer = m_isPassThroughPlayers;
             }
             else
             {
-                hitBoxScript.SetAttacker(playerController);
+                hitBoxScript.SetAttacker(playerController, direction);
                 hitBoxScript.m_atkDamage = m_maxDamage;
                 hitBoxScript.m_isPassThroughPlayer = m_isPassThroughPlayers;
             }

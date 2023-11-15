@@ -62,7 +62,7 @@ public class BasicAttack : MonoBehaviour
         m_currentDuration = 0;
         if (m_trsPunchHitBox.TryGetComponent(out HitBoxDealDamage hitBoxScript))
         {
-            hitBoxScript.SetAttacker(GetComponent<PlayerController>());
+            hitBoxScript.SetAttacker(GetComponent<PlayerController>(), dir);
             hitBoxScript.m_atkDamage = m_damage;
         }
 
