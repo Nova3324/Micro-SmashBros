@@ -42,7 +42,6 @@ public class HitBoxDealDamage : MonoBehaviour
             PlayerController playerC = collision.GetComponentInParent<PlayerController>();
             if (playerC != null && !m_PlayersHitted.Contains(playerC))
             {
-                Debug.Log(playerC.transform.parent.gameObject.name);
                 m_PlayersHitted.Add(playerC);
 
                 //Dmg

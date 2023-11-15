@@ -49,7 +49,10 @@ public class PlayerLife
 
         Debug.Log(m_playerController.transform.parent.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
 
+        //Knockback and stun
         Knockback(damage, atkDirection);
+        Debug.Log("stun duration : " + damage * 0.05f);
+        m_playerController.Stun(damage * 0.05f);
     }
 
     public bool IsKickedOut()
