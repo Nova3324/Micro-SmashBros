@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent (typeof(PlayerMovement),typeof(BasicAttack))]
@@ -63,16 +64,30 @@ public class PlayerController : MonoBehaviour
 
     public void LaunchBasicAtk()
     {
+        m_playerLife.m_isInvicible = false;
         m_basicAttack.LaunchAttack();
     }
 
     public void ChargeChargedAtk()
     {
+        m_playerLife.m_isInvicible = false;
         m_chargedAttack.StartAtkChargement();
     }
 
     public void LaunchChargedAtk()
     {
         m_chargedAttack.LaunchAtk();
+    }
+
+    public void BecomeInvicible()
+    {
+        StartCoroutine(BecomeInvincible(3f));
+    }
+
+    public IEnumerator BecomeInvincible(float duration)
+    {
+        m_playerLife.m_isInvicible = true;
+        yield return new WaitForSeconds(duration);
+        m_playerLife.m_isInvicible = false;
     }
 }

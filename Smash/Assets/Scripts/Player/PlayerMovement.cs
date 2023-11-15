@@ -105,8 +105,6 @@ public class PlayerMovement : MonoBehaviour
         m_maxKnockbackX = velocity.x;
         m_currentKnockbackX = velocity.x;
         m_rigidbody.velocity = velocity;
-
-        Debug.Log("velo : " + m_rigidbody.velocity);
     }
 
     public void ResetVelocity()
@@ -126,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Gravity()
     {
+        //can't move
         if (m_isStatic)
         {
             m_rigidbody.velocity = m_rigidbody.velocity * Vector2.right;
@@ -151,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             m_isEndJumping = false;
         }
+
         m_rigidbody.velocity += m_currentGravity * Time.deltaTime;
     }
 

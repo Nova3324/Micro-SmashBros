@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -63,7 +64,6 @@ public class PlayerLife
         return false;
     }
 
-
     /*----------------------------------------------------------*/
 
     private void KickedOut()
@@ -104,6 +104,6 @@ public class PlayerLife
         m_playerTrs.position = m_playerController.m_spawnPos;
 
         m_playerMovement.ResetVelocity();
-        //TODO become invincible for 3s
-    } 
+        m_playerController.BecomeInvicible();
+    }
 }
