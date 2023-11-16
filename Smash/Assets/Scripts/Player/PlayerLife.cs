@@ -1,3 +1,5 @@
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -9,7 +11,12 @@ public class PlayerLife
     private PlayerMovement m_playerMovement;
     private Transform m_playerTrs;
 
+    //air area
     private AirArea m_camAirArea;
+
+    //UI
+    private TMP_Text m_textLife;
+    private TMP_Text m_textDmg;
 
     //life
     private int m_life = 3;
@@ -24,7 +31,7 @@ public class PlayerLife
 
     /*----------------------------------------------------------*/
 
-    public PlayerLife(PlayerController playerController, Transform playerTransform)
+    public PlayerLife(PlayerController playerController, Transform playerTransform, GameObject UIperso = null)
     { 
         m_playerController = playerController;
         m_playerStats = playerController.m_playerStats;
@@ -33,6 +40,11 @@ public class PlayerLife
 
         m_camAirArea = Camera.main.GetComponent<AirArea>();
         Assert.IsNotNull(m_camAirArea);
+
+        GetUiElements(UIperso);
+
+        ChangeLife();
+        ChangeDmg();
     }
 
     /*----------------------------------------------------------*/
@@ -47,11 +59,13 @@ public class PlayerLife
         m_damageTaken += damage;
         m_damageTaken = Mathf.Clamp(m_damageTaken, 0, 999);
 
-        Debug.Log(m_playerController.transform.parent.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+        ChangeDmg();
 
-        //Knockback and stun
+        //Knockback
         Knockback(damage, atkDirection);
-        Debug.Log("stun duration : " + damage * 0.05f);
+
+        //STUN
+        //Debug.Log("stun duration : " + damage * 0.05f);
         //m_playerController.Stun(damage * 0.05f);
     }
 
@@ -74,8 +88,9 @@ public class PlayerLife
         m_life--;
         m_damageTaken = 0;
 
-        Debug.Log(m_playerController.transform.parent.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
-        
+        ChangeLife();
+        ChangeDmg();
+
         Respawn();
 
         //if (m_life > 0)
@@ -112,5 +127,36 @@ public class PlayerLife
 
         m_playerMovement.ResetVelocity();
         m_playerController.BecomeInvicible();
+    }
+
+    private void GetUiElements(GameObject UIperso)
+    {
+        if (UIperso != null)
+        {
+            TMP_Text[] texts = UIperso.GetComponentsInChildren<TMP_Text>();
+            if (texts.Count() >= 2) 
+            {
+                m_textDmg = texts[0];
+                m_textLife = texts[1];
+            }
+        }
+    }
+
+    private void ChangeLife()
+    {
+        if (m_textLife != null)
+        {
+            m_textLife.text = "Life : " + m_life;
+        }
+    }
+
+    private void ChangeDmg()
+    {
+        //Debug.Log(m_playerController.transform.parent.gameObject.name + " Is Kicked Out -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
+
+        if (m_textDmg != null)
+        {
+            m_textDmg.text = m_damageTaken.ToString();
+        }
     }
 }
