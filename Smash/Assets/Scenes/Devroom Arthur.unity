@@ -904,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 875768934}
     - target: {fileID: 4956649969386297014, guid: fc3d5a5af95191c4cbbb6737c2f45673, type: 3}
       propertyPath: m_Name
-      value: PlayerTest (1)
+      value: Player (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8328502154264525492, guid: fc3d5a5af95191c4cbbb6737c2f45673, type: 3}
       propertyPath: m_RootOrder
@@ -1248,17 +1248,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1832752938}
     m_Modifications:
-    - target: {fileID: 119716241948869974, guid: fc3d5a5af95191c4cbbb6737c2f45673, type: 3}
-      propertyPath: m_deltaMaxHeight
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 2459106215531452493, guid: fc3d5a5af95191c4cbbb6737c2f45673, type: 3}
       propertyPath: m_UIpersonnage
       value: 
       objectReference: {fileID: 1498001824}
     - target: {fileID: 4956649969386297014, guid: fc3d5a5af95191c4cbbb6737c2f45673, type: 3}
       propertyPath: m_Name
-      value: PlayerTest
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8328502154264525492, guid: fc3d5a5af95191c4cbbb6737c2f45673, type: 3}
       propertyPath: m_RootOrder

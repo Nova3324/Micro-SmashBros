@@ -65,8 +65,8 @@ public class PlayerLife
         Knockback(damage, atkDirection);
 
         //STUN
-        //Debug.Log("stun duration : " + damage * 0.05f);
-        //m_playerController.Stun(damage * 0.05f);
+        Debug.Log("stun duration : " + (damage * 0.05f + 0.1f));
+        m_playerController.Stun(damage * 0.05f + 0.1f);
     }
 
     public bool IsKickedOut()
@@ -117,8 +117,6 @@ public class PlayerLife
         atkDirection.Normalize();
 
         Vector3 kbForce = atkDirection * knockback * m_deltaCoef;
-        Debug.Log("Atk : " + damage + " -> kb : " + knockback * m_deltaCoef);
-
         m_playerMovement.AddKnockBack(kbForce);
     }
 

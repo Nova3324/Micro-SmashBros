@@ -104,7 +104,6 @@ public class PlayerMovement : MonoBehaviour
     public void AddKnockBack(Vector2 velocity)
     {
         velocity *= -m_gravity.y * 0.1f;
-        Debug.Log(velocity);
 
         m_maxKnockback = velocity;
         m_currentKnockback = velocity;
@@ -186,9 +185,6 @@ public class PlayerMovement : MonoBehaviour
                 currentKb = 0;
             }
         }
-
-        if (currentKb == m_currentKnockback.y && currentKb != 0)
-            Debug.Log(maxKb + " | " + currentKb);
     }
 
     private void Movements()
