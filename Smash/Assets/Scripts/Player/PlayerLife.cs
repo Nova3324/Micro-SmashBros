@@ -26,8 +26,8 @@ public class PlayerLife
     private int m_damageTaken = 0;
 
     //knockback
-    private float m_increaseCoef = 0.1f;
-    private float m_deltaCoef = 0.5f;
+    private float m_increaseCoef = 0.06f;
+    private float m_deltaCoef = 0.35f;
 
     /*----------------------------------------------------------*/
 
@@ -117,6 +117,7 @@ public class PlayerLife
         atkDirection.Normalize();
 
         Vector3 kbForce = atkDirection * knockback * m_deltaCoef;
+        Debug.Log("Atk : " + damage + " -> kb : " + knockback * m_deltaCoef);
 
         m_playerMovement.AddKnockBack(kbForce);
     }

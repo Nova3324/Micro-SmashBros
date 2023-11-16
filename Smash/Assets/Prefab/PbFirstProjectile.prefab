@@ -50,7 +50,7 @@ MonoBehaviour:
   m_speed: 40
   m_isChargementIncreaseDmg: 1
   m_isPassThroughPlayers: 0
-  m_maxDamage: 15
+  m_maxDamage: 7
   m_trsHitBox: {fileID: 4344089142674207093}
   m_timeToMaxScale: 0.2
 --- !u!50 &3817612308269439360
@@ -107,8 +107,8 @@ Transform:
   m_GameObject: {fileID: 4141088726711686641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3785920931116650369}
   m_RootOrder: -1
@@ -189,8 +189,8 @@ Transform:
   m_GameObject: {fileID: 7912617913679449654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3785920931116650369}
   m_RootOrder: -1

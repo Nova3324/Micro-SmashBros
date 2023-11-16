@@ -47,7 +47,7 @@ public class ChargedAttack: MonoBehaviour
             m_currentChargeTime = 0;
 
             PlayerController playerController = GetComponent<PlayerController>();
-            playerController.m_playerMovement.SetPlayerIsStatic(true);
+            playerController.m_playerMovement.m_isStatic = true;
         }
     }
 
@@ -56,7 +56,7 @@ public class ChargedAttack: MonoBehaviour
         if (m_isCharging)
         {
             PlayerController playerController = GetComponent<PlayerController>();
-            playerController.m_playerMovement.SetPlayerIsStatic(false);
+            playerController.m_playerMovement.m_isStatic = false;
 
             m_isCharging = false;
             StartCoroutine(CantCharge());

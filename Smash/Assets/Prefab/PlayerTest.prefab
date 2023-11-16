@@ -252,7 +252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4124121692912764510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -534,7 +534,8 @@ MonoBehaviour:
   m_deltaMaxHeight: 0.5
   m_jumpCount: 0
   m_isJumping: 0
-  m_isStatic: 0
+  m_knobackDrag: 0.3
+  m_currentKnockback: {x: 0, y: 0}
 --- !u!114 &6998275338227155863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damage: 2
-  m_range: 2.5
+  m_range: 2.8
   m_atkDuration: 0.1
   m_trsPunchOrigin: {fileID: 5314272383962320924}
   m_trsPunchHitBox: {fileID: 4914005559722804381}
@@ -592,6 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3242e12ae012e534d9ce663f4546d5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UIpersonnage: {fileID: 0}
 --- !u!114 &952691304798120129
 MonoBehaviour:
   m_ObjectHideFlags: 0
