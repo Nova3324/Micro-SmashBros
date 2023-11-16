@@ -100,6 +100,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void AddKnockBack(Vector2 velocity)
     {
+        Debug.Log(velocity);
+        velocity *= -m_gravity.y * 0.1f;
+        Debug.Log(velocity);
         m_maxKnockbackX = velocity.x;
         m_currentKnockbackX = velocity.x;
         m_rigidbody.velocity = velocity;
@@ -157,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
         //knockack +X
         if (m_maxKnockbackX > 0 && m_currentKnockbackX > 0)
         {
-            m_currentKnockbackX += m_gravity.y * Time.deltaTime;
+            m_currentKnockbackX += m_gravity.y * 0.3f * Time.deltaTime;
             if (m_currentKnockbackX < 0)
             {
                 m_currentKnockbackX = 0;
@@ -166,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         //knockback -X
         else if (m_maxKnockbackX < 0 && m_currentKnockbackX < 0)
         {
-            m_currentKnockbackX -= m_gravity.y * Time.deltaTime;
+            m_currentKnockbackX -= m_gravity.y * 0.3f * Time.deltaTime;
             if (m_currentKnockbackX > 0)
             {
                 m_currentKnockbackX = 0;

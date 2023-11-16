@@ -19,7 +19,8 @@ public class PlayerLife
     private int m_damageTaken = 0;
 
     //knockback
-    private float m_knockbackCoef = 0.01f;
+    private float m_increaseCoef = 0.1f;
+    private float m_deltaCoef = 0.5f;
 
     /*----------------------------------------------------------*/
 
@@ -51,7 +52,7 @@ public class PlayerLife
         //Knockback and stun
         Knockback(damage, atkDirection);
         Debug.Log("stun duration : " + damage * 0.05f);
-        m_playerController.Stun(damage * 0.05f);
+        //m_playerController.Stun(damage * 0.05f);
     }
 
     public bool IsKickedOut()
@@ -90,13 +91,17 @@ public class PlayerLife
     private void Knockback(int damage, Vector3 atkDirection)
     {
         //calcul knockback intensity
-        float knockback = Mathf.Pow(m_damageTaken, 2f) * m_knockbackCoef * damage;
+        float knockback = Mathf.Pow(m_damageTaken, 2f) * m_increaseCoef;
         knockback /= m_playerStats.m_mass;
+        knockback += damage;
 
-        atkDirection += Vector3.up * 0.5f;
+        if (atkDirection.y >= 0)
+        {
+            atkDirection += Vector3.up;
+        }
         atkDirection.Normalize();
 
-        Vector3 kbForce = atkDirection * knockback;
+        Vector3 kbForce = atkDirection * knockback * m_deltaCoef;
 
         m_playerMovement.AddKnockBack(kbForce);
     }

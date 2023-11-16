@@ -527,7 +527,6 @@ MonoBehaviour:
   m_scriptableReader: {fileID: 952691304798120129}
   m_detectCollisions: {fileID: 5306748916961823157}
   m_gravityMultiplier: 1
-  m_gravity: {x: 0, y: -60}
   m_isGrounded: 0
   m_airDrag: 0.7
   m_maxJump: 2
