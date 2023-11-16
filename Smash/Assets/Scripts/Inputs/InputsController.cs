@@ -7,9 +7,11 @@ public class InputsController : MonoBehaviour
     private PlayerInput m_playerInput;
     private PlayerController m_playerController;
 
+
     public Vector2 joystick;
     bool m_isJump;
 
+    /*---------------------------------------------------------GAME---------------------------------------------------------*/
     void Awake()
     {
         m_playerInput = GetComponent<PlayerInput>();
@@ -23,12 +25,12 @@ public class InputsController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.performed) 
+        if (context.performed)
         {
             m_playerController.PlayerJump();
         }
-        if(context.canceled) 
-        { 
+        if (context.canceled)
+        {
             m_playerController.ResetJump();
         }
     }
@@ -40,7 +42,7 @@ public class InputsController : MonoBehaviour
 
     public void OnBasicAtk(InputAction.CallbackContext context)
     {
-        if (context.performed) 
+        if (context.performed)
         {
             m_playerController.LaunchBasicAtk();
         }
