@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerLife
 {
@@ -8,7 +9,7 @@ public class PlayerLife
     private PlayerMovement m_playerMovement;
     private Transform m_playerTrs;
 
-    private Camera m_cam;
+    private AirArea m_camAirArea;
 
     //life
     private int m_life = 3;
@@ -18,7 +19,8 @@ public class PlayerLife
     private int m_damageTaken = 0;
 
     //knockback
-    private float m_knockbackCoef = 0.01f;
+    private float m_increaseCoef = 0.1f;
+    private float m_deltaCoef = 0.5f;
 
     /*----------------------------------------------------------*/
 
@@ -29,12 +31,13 @@ public class PlayerLife
         m_playerMovement = playerController.m_playerMovement;
         m_playerTrs = playerTransform;
 
-        m_cam = Camera.main;
+        m_camAirArea = Camera.main.GetComponent<AirArea>();
+        Assert.IsNotNull(m_camAirArea);
     }
 
     /*----------------------------------------------------------*/
 
-    public void TakeDamage(int damage, Transform attakerTrs)
+    public void TakeDamage(int damage, Vector3 atkDirection)
     {
         if (m_isInvicible)
         {
@@ -46,13 +49,16 @@ public class PlayerLife
 
         Debug.Log(m_playerController.transform.parent.gameObject.name + " Take Damage -> Life : " + m_life + " | Damage Taken : " + m_damageTaken);
 
-        Knockback(damage, attakerTrs);
+        //Knockback and stun
+        Knockback(damage, atkDirection);
+        Debug.Log("stun duration : " + damage * 0.05f);
+        //m_playerController.Stun(damage * 0.05f);
     }
 
     public bool IsKickedOut()
     {
         //if the player is not in the Air Zone
-        if (!AirZone(1.5f).Contains(m_playerTrs.position))
+        if (!m_camAirArea.IsInAirZone(m_playerTrs.position))
         {
             KickedOut();
             return true;
@@ -60,7 +66,6 @@ public class PlayerLife
 
         return false;
     }
-
 
     /*----------------------------------------------------------*/
 
@@ -83,41 +88,29 @@ public class PlayerLife
         //}
     }
 
-    private void Knockback(int damage, Transform attakerTrs)
+    private void Knockback(int damage, Vector3 atkDirection)
     {
         //calcul knockback intensity
-        float knockback = Mathf.Pow(m_damageTaken, 2f) * m_knockbackCoef * damage;
+        float knockback = Mathf.Pow(m_damageTaken, 2f) * m_increaseCoef;
         knockback /= m_playerStats.m_mass;
+        knockback += damage;
 
-        Vector3 dir = attakerTrs.position - m_playerTrs.position;
-        dir += Vector3.up;
-        dir.Normalize();
+        if (atkDirection.y >= 0)
+        {
+            atkDirection += Vector3.up;
+        }
+        atkDirection.Normalize();
 
-        Vector3 kbForce = dir * knockback;
+        Vector3 kbForce = atkDirection * knockback * m_deltaCoef;
 
-        //TODO add to player movement
+        m_playerMovement.AddKnockBack(kbForce);
     }
 
     private void Respawn()
     {
         m_playerTrs.position = m_playerController.m_spawnPos;
 
-        //TODO reset velocity
-        //TODO become invincible for 3s
-    } 
-
-    private Rect AirZone(float sizeMultiplicator = 1f)
-    {
-        //if sizeMultiplicator == 1 -> Air zone = camOrthoSize
-        //world rect cam size : x = y * (16/9), y = m_cam.orthographicSize * 2
-
-        Rect airRectZone = new();
-        float height = m_cam.orthographicSize * 2f * sizeMultiplicator;
-        float width = height * (16f / 9f);
-        float x = m_cam.transform.position.x - width / 2f;
-        float y = m_cam.transform.position.y - height / 2f;
-        airRectZone.Set(x, y, width, height);
-
-        return airRectZone;
+        m_playerMovement.ResetVelocity();
+        m_playerController.BecomeInvicible();
     }
 }

@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent (typeof(PlayerMovement),typeof(BasicAttack))]
+[RequireComponent(typeof(PlayerMovement), typeof(BasicAttack))]
 [RequireComponent(typeof(ChargedAttack), typeof(Parade), typeof(ScriptableReader))]
 public class PlayerController : MonoBehaviour
 {
@@ -16,18 +17,20 @@ public class PlayerController : MonoBehaviour
     //respawn
     public Vector3 m_spawnPos { get; private set; }
 
+    private bool m_isCanAct = true;
+
     /*----------------------------------------------------------*/
 
     void Start()
     {
-        m_playerMovement = GetComponent<PlayerMovement>();        
-        m_basicAttack = GetComponent<BasicAttack>();        
-        m_chargedAttack = GetComponent<ChargedAttack>();        
-        m_parade = GetComponent<Parade>();  
+        m_playerMovement = GetComponent<PlayerMovement>();
+        m_basicAttack = GetComponent<BasicAttack>();
+        m_chargedAttack = GetComponent<ChargedAttack>();
+        m_parade = GetComponent<Parade>();
         m_playerStats = GetComponent<ScriptableReader>();
-        
-        m_playerLife = new PlayerLife(this, transform.parent); 
-        
+
+        m_playerLife = new PlayerLife(this, transform.parent);
+
         m_spawnPos = transform.parent.position;
     }
 
@@ -47,21 +50,82 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerJump()
     {
-        m_playerMovement.Jump();
+        if (m_isCanAct)
+        {
+            m_playerMovement.Jump();
+        }
     }
 
     public void ResetJump()
     {
-        m_playerMovement.ResetTimeToReachMaxHeight();
+        if (m_isCanAct)
+        {
+            m_playerMovement.ResetTimeToReachMaxHeight();
+        }
     }
 
     public void AttackDirection(Vector2 direction)
     {
-        m_basicAttack.SetAttackDirection(direction);
+        if (m_isCanAct)
+        {
+            m_basicAttack.SetAttackDirection(direction);
+            m_chargedAttack.SetAttackDirection(direction);
+        }
     }
 
-    public void LauchBasicAtk()
+    public void LaunchBasicAtk()
     {
-        m_basicAttack.LaunchAttack();
+        if (m_isCanAct)
+        {
+            m_playerLife.m_isInvicible = false;
+            m_basicAttack.LaunchAttack();
+        }
+    }
+
+    public void ChargeChargedAtk()
+    {
+        if (m_isCanAct)
+        {
+            m_playerLife.m_isInvicible = false;
+            m_chargedAttack.StartAtkChargement();
+        }
+    }
+
+    public void LaunchChargedAtk()
+    {
+        if (m_isCanAct)
+        {
+            m_chargedAttack.LaunchAtk();
+        }
+    }
+
+    /*----------------------------------------------------------*/
+
+    public void BecomeInvicible()
+    {
+        StartCoroutine(InvincibleDuring(3f));
+    }
+
+    public void Stun(float duration)
+    {
+        StartCoroutine(CantActDuring(duration));
+    }
+
+    /*----------------------------------------------------------*/
+
+    private IEnumerator InvincibleDuring(float duration)
+    {
+        m_playerLife.m_isInvicible = true;
+        yield return new WaitForSeconds(duration);
+        m_playerLife.m_isInvicible = false;
+    }
+
+    private IEnumerator CantActDuring(float duration)
+    {
+        m_isCanAct = false;
+        m_playerMovement.m_isStatic = true;
+        yield return new WaitForSeconds(duration);
+        m_isCanAct = true;
+        m_playerMovement.m_isStatic = false;
     }
 }

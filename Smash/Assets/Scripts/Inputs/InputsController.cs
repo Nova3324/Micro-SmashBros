@@ -42,7 +42,19 @@ public class InputsController : MonoBehaviour
     {
         if (context.performed) 
         {
-            m_playerController.LauchBasicAtk();
+            m_playerController.LaunchBasicAtk();
+        }
+    }
+    public void OnChargedAtk(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            m_playerController.ChargeChargedAtk();
+
+        }
+        else if (context.canceled)
+        {
+            m_playerController.LaunchChargedAtk();
         }
     }
 }

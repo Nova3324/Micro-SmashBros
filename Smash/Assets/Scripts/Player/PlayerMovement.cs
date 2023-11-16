@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Gravity")]
     [SerializeField] private float m_gravityMultiplier;
-    [SerializeField] Vector2 m_gravity;
+    private Vector2 m_gravity;
     private Vector2 m_currentGravity;
 
     [HideInInspector] public bool m_isGrounded = false;
@@ -29,11 +29,17 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool m_isStatic = false;
     private Vector2 m_joystickDirection;
 
+    [Header("KnockBack")]
+    private float m_maxKnockbackX;
+    private float m_currentKnockbackX;
+
+    /*----------------------------------------------------------*/
 
     void Start()
     {
         m_rigidbody = GetComponentInParent<Rigidbody2D>();
 
+        m_gravity = new Vector2(0f, -((m_maxHeight / m_deltaMaxHeight) * 2f / m_deltaMaxHeight) * 1.2f);
         m_currentGravity = m_gravity;
     }
 
@@ -45,8 +51,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Gravity();
+        KnockbackDrag();
         Movements();
     }
+
+    /*----------------------------------------------------------*/
 
     public void JoystickDirection(Vector2 vector)
     {
@@ -55,16 +64,75 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 vector2)
     {
-        if (!m_isStatic)
+        m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
+    }
+
+    public void ResetTimeToReachMaxHeight()
+    {
+        if (m_isJumping)
         {
-            m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
+            m_timeToReachMaxHeight = 1.5f;
+            m_isJumping = false;
+            m_isEndJumping = true;
+            m_currentGravity += m_gravity;
         }
     }
 
+    public void Jump()
+    {
+        if (m_jumpCount < m_maxJump && m_isStatic == false)
+        {
+            m_timeToReachMaxHeight = m_deltaMaxHeight;
+            m_jumpForce = (m_maxHeight / m_deltaMaxHeight) * 2f;
+            m_currentGravity = new Vector2(m_rigidbody.velocity.x, -m_jumpForce / m_deltaMaxHeight);
+            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_jumpForce);
+
+
+            m_jumpCount++;
+            m_isJumping = true;
+        }
+    }
+
+    public void SetPlayerIsStatic(bool isStatic)
+    {
+        m_isStatic = isStatic;
+    }
+
+    public void AddKnockBack(Vector2 velocity)
+    {
+        Debug.Log(velocity);
+        velocity *= -m_gravity.y * 0.1f;
+        Debug.Log(velocity);
+        m_maxKnockbackX = velocity.x;
+        m_currentKnockbackX = velocity.x;
+        m_rigidbody.velocity = velocity;
+    }
+
+    public void ResetVelocity()
+    {
+        //reste move
+        m_rigidbody.velocity = Vector2.zero;
+        m_currentKnockbackX = 0f;
+        m_maxKnockbackX = 0;
+        m_lateralMove = 0;
+
+        //reset jump
+        ResetTimeToReachMaxHeight();
+        m_isEndJumping = false;
+    }
+
+    /*----------------------------------------------------------*/
+
     private void Gravity()
     {
+        //can't move
+        if (m_isStatic)
+        {
+            m_rigidbody.velocity = m_rigidbody.velocity * Vector2.right;
+            m_currentGravity = Vector2.zero;
+        }
         //Gravity
-        if (m_isJumping == false && m_isEndJumping == false)
+        else if (m_isJumping == false && m_isEndJumping == false)
         {
             if (m_isGrounded == true)
             {
@@ -83,15 +151,47 @@ public class PlayerMovement : MonoBehaviour
         {
             m_isEndJumping = false;
         }
+
         m_rigidbody.velocity += m_currentGravity * Time.deltaTime;
+    }
+
+    private void KnockbackDrag()
+    {
+        //knockack +X
+        if (m_maxKnockbackX > 0 && m_currentKnockbackX > 0)
+        {
+            m_currentKnockbackX += m_gravity.y * 0.3f * Time.deltaTime;
+            if (m_currentKnockbackX < 0)
+            {
+                m_currentKnockbackX = 0;
+            }
+        }
+        //knockback -X
+        else if (m_maxKnockbackX < 0 && m_currentKnockbackX < 0)
+        {
+            m_currentKnockbackX -= m_gravity.y * 0.3f * Time.deltaTime;
+            if (m_currentKnockbackX > 0)
+            {
+                m_currentKnockbackX = 0;
+            }
+        }
     }
 
     private void Movements()
     {
-        if (!m_isGrounded)
-            m_rigidbody.velocity = new Vector2(m_lateralMove * m_airDrag, m_rigidbody.velocity.y);
+        if (!m_isStatic)
+        {
+            //air movements
+            if (!m_isGrounded)
+                m_rigidbody.velocity = new Vector2(m_currentKnockbackX + m_lateralMove * m_airDrag, m_rigidbody.velocity.y);
+            //grounded movements
+            else
+                m_rigidbody.velocity = new Vector2(m_currentKnockbackX + m_lateralMove, m_rigidbody.velocity.y);
+        }
         else
-            m_rigidbody.velocity = new Vector2(m_lateralMove, m_rigidbody.velocity.y);
+        {
+            m_rigidbody.velocity = new Vector2(m_currentKnockbackX, m_rigidbody.velocity.y);
+        }
     }
 
     private void JumpTimer()
@@ -104,32 +204,6 @@ public class PlayerMovement : MonoBehaviour
                 m_timeToReachMaxHeight = 1.5f;
                 m_isJumping = false;
             }
-        }
-    }
-
-    public void ResetTimeToReachMaxHeight()
-    {
-        if(m_isJumping)
-        {
-            m_timeToReachMaxHeight = 1.5f;
-            m_isJumping = false;
-            m_isEndJumping = true;
-            m_currentGravity += m_gravity;
-        }
-    }
-
-    public void Jump()
-    {
-        if (m_jumpCount < m_maxJump && m_isStatic == false)
-        {
-            m_timeToReachMaxHeight = m_deltaMaxHeight;
-            m_jumpForce = (m_maxHeight / m_deltaMaxHeight) * 2f;
-            m_currentGravity = new Vector2(m_rigidbody.velocity.x, -m_jumpForce / m_deltaMaxHeight);
-            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_jumpForce);
-            
-            
-            m_jumpCount++;
-            m_isJumping = true;
         }
     }
 }
