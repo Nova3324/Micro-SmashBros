@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement), typeof(BasicAttack))]
+[RequireComponent(typeof(PlayerMovement), typeof(BasicAttack), typeof(PlayerDrawStats))]
 [RequireComponent(typeof(ChargedAttack), typeof(Parade), typeof(ScriptableReader))]
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public PlayerLife m_playerLife { get; private set; }
     public PlayerMovement m_playerMovement { get; private set; }
     public ScriptableReader m_playerStats { get; private set; }
+    public PlayerDrawStats m_drawStats { get; private set; }
 
     //respawn
     [HideInInspector] public Vector3 m_spawnPos { get; private set; }
@@ -31,10 +32,16 @@ public class PlayerController : MonoBehaviour
         m_chargedAttack = GetComponent<ChargedAttack>();
         m_parade = GetComponent<Parade>();
         m_playerStats = GetComponent<ScriptableReader>();
+        m_drawStats = GetComponent<PlayerDrawStats>();
 
         m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
         m_spawnPos = transform.parent.position;
+
+        if (m_UIpersonnage != null)
+        {
+            m_UIpersonnage.gameObject.SetActive(true);
+        }
     }
 
     private void Update()
