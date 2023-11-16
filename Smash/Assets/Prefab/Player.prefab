@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 2947350436155547051}
   - component: {fileID: 2459106215531452493}
   - component: {fileID: 952691304798120129}
+  - component: {fileID: 3823389986167336122}
   m_Layer: 6
   m_Name: Character controller
   m_TagString: Untagged
@@ -607,3 +608,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerInfo: {fileID: 11400000, guid: c7cea2e9ee4b9a34bb46138991dd7a84, type: 2}
+--- !u!114 &3823389986167336122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750238567788223510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80f52541def8ba45b2fd5262d3f7826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_color0:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_color50:
+    serializedVersion: 2
+    rgba: 4278244351
+  m_color100:
+    serializedVersion: 2
+    rgba: 4278228724
+  m_color150:
+    serializedVersion: 2
+    rgba: 4278190293
+  m_color200:
+    serializedVersion: 2
+    rgba: 4278190192

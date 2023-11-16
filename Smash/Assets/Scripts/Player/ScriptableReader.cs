@@ -8,6 +8,7 @@ public class ScriptableReader : MonoBehaviour
     [HideInInspector] public float m_maxSpeed { get; private set; }
     [HideInInspector] public float m_basicAttack { get; private set; }
     [HideInInspector] public float m_remoteAttack { get; private set; }
+    [HideInInspector] public string m_name { get; private set; }
 
     void Start()
     {
@@ -15,5 +16,6 @@ public class ScriptableReader : MonoBehaviour
         m_maxSpeed = m_playerInfo.m_maxSpeed;
         m_basicAttack = m_playerInfo.m_basicAttack;
         m_remoteAttack = m_playerInfo.m_remoteAttack;
+        m_name = m_playerInfo.m_name;
     }
 }
