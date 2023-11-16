@@ -60,7 +60,6 @@ public class PlayerDrawStats : MonoBehaviour
     private void ColorDmgText(int damageTaken)
     {
         float lerpIndex = (damageTaken % 50f) / 50f;
-        Debug.Log(lerpIndex + " dmg : " + damageTaken);
         Color textColor;
 
         if (damageTaken < 50)

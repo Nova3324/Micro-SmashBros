@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement), typeof(BasicAttack), typeof(PlayerDrawStats))]
@@ -6,7 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject m_UIpersonnage;
+    [SerializeField] private GameObject m_pbUIpersoOdd;
+    [SerializeField] private GameObject m_pbUIpersoEven;
+    private GameObject m_UIpersonnage;
 
     [Header("Player Components")]
     BasicAttack m_basicAttack;
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     /*----------------------------------------------------------*/
 
+
     void Start()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
@@ -37,11 +41,6 @@ public class PlayerController : MonoBehaviour
         m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
         m_spawnPos = transform.parent.position;
-
-        if (m_UIpersonnage != null)
-        {
-            m_UIpersonnage.gameObject.SetActive(true);
-        }
     }
 
     private void Update()
@@ -51,6 +50,35 @@ public class PlayerController : MonoBehaviour
     }
 
     /*----------------------------------------------------------*/
+
+    public void SpawnUiStats(int playerIndex)
+    {
+        playerIndex += 1; //because start at 0
+        int multiplicator;
+        float xOffset;
+        float x;
+        RectTransform rectTrs;
+
+        if (playerIndex % 2 == 0)
+        {
+            m_UIpersonnage = Instantiate(m_pbUIpersoEven, FindObjectOfType<Canvas>().transform);
+            multiplicator = (playerIndex - 2) / 2;
+            rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
+            xOffset = (-rectTrs.anchoredPosition.x * 2f - rectTrs.rect.size.x) / 2f;
+            x = rectTrs.anchoredPosition.x - (rectTrs.rect.size.x + xOffset) * multiplicator;
+        }
+        else
+        {
+            m_UIpersonnage = Instantiate(m_pbUIpersoOdd, FindObjectOfType<Canvas>().transform);
+            multiplicator = (playerIndex - 1) / 2;
+            rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
+            xOffset = (rectTrs.anchoredPosition.x * 2f - rectTrs.rect.size.x) / 2f;
+            x = rectTrs.anchoredPosition.x + (rectTrs.rect.size.x + xOffset) * multiplicator;
+        }
+
+        rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
+        rectTrs.anchoredPosition = new Vector2(x, rectTrs.anchoredPosition.y);
+    }
 
     public void PlayerMovement(Vector2 vector2)
     {

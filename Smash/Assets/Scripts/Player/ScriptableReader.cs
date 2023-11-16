@@ -10,7 +10,7 @@ public class ScriptableReader : MonoBehaviour
     [HideInInspector] public float m_remoteAttack { get; private set; }
     [HideInInspector] public string m_name { get; private set; }
 
-    void Start()
+    void Awake()
     {
         m_mass = m_playerInfo.m_mass;
         m_maxSpeed = m_playerInfo.m_maxSpeed;
