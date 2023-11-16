@@ -12,6 +12,7 @@ public class DetectCollisions : MonoBehaviour
             m_collisionCount++;
             m_playerMovement.m_isGrounded = true;
             m_playerMovement.m_isJumping = false;
+            m_playerMovement.m_currentKnockback *= Vector2.right;
             m_playerMovement.m_jumpCount = 0;          
         }
     }

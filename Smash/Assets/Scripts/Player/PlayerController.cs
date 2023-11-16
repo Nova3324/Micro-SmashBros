@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(ChargedAttack), typeof(Parade), typeof(ScriptableReader))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private GameObject m_UIpersonnage;
+
     [Header("Player Components")]
     BasicAttack m_basicAttack;
     ChargedAttack m_chargedAttack;
@@ -15,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public ScriptableReader m_playerStats { get; private set; }
 
     //respawn
-    public Vector3 m_spawnPos { get; private set; }
+    [HideInInspector] public Vector3 m_spawnPos { get; private set; }
 
     private bool m_isCanAct = true;
 
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour
         m_parade = GetComponent<Parade>();
         m_playerStats = GetComponent<ScriptableReader>();
 
-        m_playerLife = new PlayerLife(this, transform.parent);
+        m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
         m_spawnPos = transform.parent.position;
     }
