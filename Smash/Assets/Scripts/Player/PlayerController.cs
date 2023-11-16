@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     BasicAttack m_basicAttack;
     ChargedAttack m_chargedAttack;
     Parade m_parade;
+    [SerializeField] private PauseController m_pauseController;
 
     public PlayerLife m_playerLife { get; private set; }
     public PlayerMovement m_playerMovement { get; private set; }
@@ -165,5 +166,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         m_isCanAct = true;
         m_playerMovement.m_isStatic = false;
+    }
+
+    public void Pause()
+    {
+        m_pauseController.Back();
     }
 }

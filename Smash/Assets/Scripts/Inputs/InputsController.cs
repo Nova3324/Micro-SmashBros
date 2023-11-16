@@ -59,5 +59,11 @@ public class InputsController : MonoBehaviour
             m_playerController.LaunchChargedAtk();
         }
     }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            m_playerController.Pause();
+    }
 }
 
