@@ -9,13 +9,14 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject m_pbUIpersoOdd;
     [SerializeField] private GameObject m_pbUIpersoEven;
+    [SerializeField] private GameObject m_pbEndGame;
     private GameObject m_UIpersonnage;
 
     [Header("Player Components")]
     BasicAttack m_basicAttack;
     ChargedAttack m_chargedAttack;
     Parade m_parade;
-    [SerializeField] private PauseController m_pauseController;
+    PauseController m_pauseController;
 
     public PlayerLife m_playerLife { get; private set; }
     public PlayerMovement m_playerMovement { get; private set; }
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
         m_parade = GetComponent<Parade>();
         m_playerStats = GetComponent<ScriptableReader>();
         m_drawStats = GetComponent<PlayerDrawStats>();
+        m_pauseController = FindAnyObjectByType<PauseController>();
 
         m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
@@ -79,6 +81,11 @@ public class PlayerController : MonoBehaviour
 
         rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
         rectTrs.anchoredPosition = new Vector2(x, rectTrs.anchoredPosition.y);
+    }
+
+    public void SpawnEngameMenu()
+    {
+        GameObject UIendgame = Instantiate(m_pbEndGame, FindObjectOfType<Canvas>().transform);
     }
 
     public void PlayerMovement(Vector2 vector2)
