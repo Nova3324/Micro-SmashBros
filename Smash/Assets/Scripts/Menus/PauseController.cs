@@ -65,6 +65,11 @@ public class PauseController : MonoBehaviour
             m_settings.SetActive(false);
             m_pause.SetActive(true);
             Time.timeScale = 1.0f;
+
+            Selectable continueSelectable = m_continue.GetComponent<Selectable>();
+
+            if (continueSelectable != null)
+                continueSelectable.Select();
         }
         else
         {

@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerIndex % 2 == 0)
         {
-            m_UIpersonnage = Instantiate(m_pbUIpersoEven, GameObject.Find("CanvasFront").transform);
+            m_UIpersonnage = Instantiate(m_pbUIpersoEven, GameObject.Find("CanvasPersoUI").transform);
             multiplicator = (playerIndex - 2) / 2;
             rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
             xOffset = (-rectTrs.anchoredPosition.x * 2f - rectTrs.rect.size.x) / 2f;
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            m_UIpersonnage = Instantiate(m_pbUIpersoOdd, GameObject.Find("CanvasFront").transform);
+            m_UIpersonnage = Instantiate(m_pbUIpersoOdd, GameObject.Find("CanvasPersoUI").transform);
             multiplicator = (playerIndex - 1) / 2;
             rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
             xOffset = (rectTrs.anchoredPosition.x * 2f - rectTrs.rect.size.x) / 2f;
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnEngameMenu()
     {
-        GameObject UIendgame = Instantiate(m_pbEndGame, FindObjectOfType<Canvas>().transform);
+        GameObject UIendgame = Instantiate(m_pbEndGame, GameObject.Find("CanvasFront").transform);
         m_pauseController.SwitchActionMap("Menu");
 
         Selectable continueSelectable = GameObject.Find("Main Menu").GetComponent<Selectable>();

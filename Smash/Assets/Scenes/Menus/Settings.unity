@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 187990761}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &155097837
@@ -201,6 +201,22 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &187990761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5779546844900178938, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+  m_PrefabInstance: {fileID: 6995240872739133316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &187990763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8203468992579753078, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+  m_PrefabInstance: {fileID: 6995240872739133316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187990761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7c5270eab1b4e44878e3a88747911f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439607341
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +308,7 @@ MonoBehaviour:
     m_ActionName: Game/AtkDirection
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 187990763}
         m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
         m_MethodName: Back
         m_Mode: 1
@@ -532,6 +548,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1154034208}
     m_Modifications:
+    - target: {fileID: 1776185134745308012, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -387.0025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776185134745308012, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 47.00009
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769473066022020911, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 28.999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058974122983984919, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 28.999939
+      objectReference: {fileID: 0}
     - target: {fileID: 6726588578693600120, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
       propertyPath: m_Name
       value: Settings
@@ -619,6 +651,10 @@ PrefabInstance:
     - target: {fileID: 7339237307994607200, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760419566788673590, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -224.00061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
