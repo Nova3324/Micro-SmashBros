@@ -65,5 +65,11 @@ public class InputsController : MonoBehaviour
         if (context.performed)
             m_playerController.Pause();
     }
+
+    public void Back(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            m_playerController.BackSettings();
+    }
 }
 

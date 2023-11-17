@@ -39,13 +39,16 @@ public class PauseController : MonoBehaviour
 
     public void BackSettings()
     {
-        m_pause.SetActive(true);
-        m_settings.SetActive(false);
+        if(!m_pause.activeSelf) 
+        {
+            m_pause.SetActive(true);
+            m_settings.SetActive(false);
 
-        Selectable continueSelectable = m_continue.GetComponent<Selectable>();
+            Selectable continueSelectable = m_continue.GetComponent<Selectable>();
 
-        if (continueSelectable != null)
-            continueSelectable.Select();
+            if (continueSelectable != null)
+                continueSelectable.Select();
+        }
     }
 
     public void Back()
@@ -60,6 +63,7 @@ public class PauseController : MonoBehaviour
         {
             SwitchActionMap("Game");
             m_settings.SetActive(false);
+            m_pause.SetActive(true);
             Time.timeScale = 1.0f;
         }
         else
@@ -76,7 +80,7 @@ public class PauseController : MonoBehaviour
         }
     }
 
-    private void SwitchActionMap(string actionName)
+    public void SwitchActionMap(string actionName)
     {
         var playerInputs = FindObjectsOfType<InputsController>();
 

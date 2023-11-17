@@ -1,6 +1,7 @@
 using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement), typeof(BasicAttack), typeof(PlayerDrawStats))]
 [RequireComponent(typeof(ChargedAttack), typeof(Parade), typeof(ScriptableReader))]
@@ -86,6 +87,12 @@ public class PlayerController : MonoBehaviour
     public void SpawnEngameMenu()
     {
         GameObject UIendgame = Instantiate(m_pbEndGame, FindObjectOfType<Canvas>().transform);
+        m_pauseController.SwitchActionMap("Menu");
+
+        Selectable continueSelectable = GameObject.Find("Main Menu").GetComponent<Selectable>();
+
+        if (continueSelectable != null)
+            continueSelectable.Select();
     }
 
     public void PlayerMovement(Vector2 vector2)
@@ -178,5 +185,10 @@ public class PlayerController : MonoBehaviour
     public void Pause()
     {
         m_pauseController.Back();
+    }
+
+    public void BackSettings()
+    {
+        m_pauseController.BackSettings();
     }
 }
