@@ -3,6 +3,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class PlayerLife
 {
@@ -87,17 +88,13 @@ public class PlayerLife
 
         m_playerController.m_drawStats.ChangeLife(m_life);
         m_playerController.m_drawStats.ChangeDmg(m_damageTaken);
-
+        
         Respawn();
-
-        //if (m_life > 0)
-        //{
-        //    Respawn();
-        //}
-        //else
-        //{
-        //    //TODO Game Over
-        //}
+        
+        if(m_life <= 0)
+        {
+            m_playerController.SpawnEngameMenu();
+        }
     }
 
     private void Knockback(int damage, Vector3 atkDirection)

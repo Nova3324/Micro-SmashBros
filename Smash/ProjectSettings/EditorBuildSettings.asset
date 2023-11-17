@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Devroom Arthur.unity
-    guid: c1c78de902c94b24cb78af29f37a1a26
+    path: Assets/Scenes/Menus/Logo.unity
+    guid: ec2565a4caf1c934ba2b77574288d42f
+  - enabled: 1
+    path: Assets/Scenes/Menus/Menu Principal.unity
+    guid: 1d4eb87f2bbfda04aa6b08e912678005
+  - enabled: 1
+    path: Assets/Scenes/Menus/Credits.unity
+    guid: c2b697452980dd04a9d66a5797b81200
+  - enabled: 1
+    path: Assets/Scenes/Menus/Settings.unity
+    guid: 6fc32f90b3658334998180ffdc49f926
+  - enabled: 1
+    path: Assets/Scenes/Level/Map2 - Pleasure Graveyard.unity
+    guid: 2983478b85c2fde4196c678ef7f133f5
   m_configObjects: {}

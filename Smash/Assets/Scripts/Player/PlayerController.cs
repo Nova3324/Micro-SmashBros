@@ -1,6 +1,7 @@
 using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement), typeof(BasicAttack), typeof(PlayerDrawStats))]
 [RequireComponent(typeof(ChargedAttack), typeof(Parade), typeof(ScriptableReader))]
@@ -9,12 +10,14 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject m_pbUIpersoOdd;
     [SerializeField] private GameObject m_pbUIpersoEven;
+    [SerializeField] private GameObject m_pbEndGame;
     private GameObject m_UIpersonnage;
 
     [Header("Player Components")]
     BasicAttack m_basicAttack;
     ChargedAttack m_chargedAttack;
     Parade m_parade;
+    PauseController m_pauseController;
 
     public PlayerLife m_playerLife { get; private set; }
     public PlayerMovement m_playerMovement { get; private set; }
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
         m_parade = GetComponent<Parade>();
         m_playerStats = GetComponent<ScriptableReader>();
         m_drawStats = GetComponent<PlayerDrawStats>();
+        m_pauseController = FindAnyObjectByType<PauseController>();
 
         m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
@@ -78,6 +82,17 @@ public class PlayerController : MonoBehaviour
 
         rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
         rectTrs.anchoredPosition = new Vector2(x, rectTrs.anchoredPosition.y);
+    }
+
+    public void SpawnEngameMenu()
+    {
+        GameObject UIendgame = Instantiate(m_pbEndGame, FindObjectOfType<Canvas>().transform);
+        m_pauseController.SwitchActionMap("Menu");
+
+        Selectable continueSelectable = GameObject.Find("Main Menu").GetComponent<Selectable>();
+
+        if (continueSelectable != null)
+            continueSelectable.Select();
     }
 
     public void PlayerMovement(Vector2 vector2)
@@ -165,5 +180,15 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         m_isCanAct = true;
         m_playerMovement.m_isStatic = false;
+    }
+
+    public void Pause()
+    {
+        m_pauseController.Back();
+    }
+
+    public void BackSettings()
+    {
+        m_pauseController.BackSettings();
     }
 }

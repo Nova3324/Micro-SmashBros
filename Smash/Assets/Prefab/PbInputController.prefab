@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &612087137215666244
 MonoBehaviour:
@@ -131,13 +131,21 @@ MonoBehaviour:
     m_ActionId: 28801d7e-c65e-46e6-b3e1-d1c575986505
     m_ActionName: Game/Dash
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5017942569204018657}
+        m_TargetAssemblyTypeName: InputsController, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 120bc7ae-7ef9-4780-a207-7c0a90d08e1e
     m_ActionName: Game/Start
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 386b3622-d657-415b-b005-fe5527307fd9
-    m_ActionName: Menus/Back
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5017942569204018657}
@@ -154,6 +162,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c7d1fa1b-c6d5-4c0e-9c71-ff499cdb276d
     m_ActionName: Game/AtkDirection[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5017942569204018657}
+        m_TargetAssemblyTypeName: InputsController, Assembly-CSharp
+        m_MethodName: Back
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7bccf83e-24af-4e10-94ce-b730874400e5
+    m_ActionName: Menu/Back[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0fea7333-c861-4907-b7bd-d6da63645a6c
+    m_ActionName: Menu/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Game
@@ -171,4 +199,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3226cdbbc2849648841c1608be63a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerInput: {fileID: 0}
   joystick: {x: 0, y: 0}
