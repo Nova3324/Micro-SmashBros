@@ -7,7 +7,7 @@ public class ButtonController : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Devroom Cedric");
+        SceneManager.LoadScene("Map2 - Pleasure Graveyard");
         Time.timeScale = 1.0f;
     }
 
