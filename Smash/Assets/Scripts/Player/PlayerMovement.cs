@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public bool m_isStatic { get; set; } = false;
     private Vector2 m_joystickDirection;
+    private Vector3 m_lastSpriteScale;
 
     [Header("KnockBack")]
     [SerializeField] private float m_knobackDrag = 0.3f;
@@ -68,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 vector2)
     {
+        GameObject gameObject = GameObject.Find("Sprites");
+
         m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
         m_spriteController.WalkAnimation(m_scriptableReader.m_maxSpeed);
 
@@ -75,6 +78,24 @@ public class PlayerMovement : MonoBehaviour
         {
             m_spriteController.m_animator.SetBool("Walk", false);
         }
+
+        //flip
+        if (vector2.x < 0)
+        {
+            gameObject.transform.localScale = new Vector3(-1.5f, 1.75f, 1);
+            m_lastSpriteScale = gameObject.transform.localScale;
+        }
+        else if(vector2.x > 0)
+        {
+            gameObject.transform.localScale = new Vector3(1.5f, 1.75f, 1);
+            m_lastSpriteScale = gameObject.transform.localScale;
+        }
+        else
+        {
+            gameObject.transform.localScale = m_lastSpriteScale;
+        }
+
+
     }
 
     public void ResetTimeToReachMaxHeight()

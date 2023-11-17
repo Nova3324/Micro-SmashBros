@@ -11,7 +11,6 @@ public class SpriteController : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
     }
-
     public void WalkAnimation(float speed)
     {
         m_animator.SetBool("Walk", true);
