@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private GameObject m_UIpersonnage;
 
     [Header("Player Components")]
+    [SerializeField] private SpriteController m_spController;
     BasicAttack m_basicAttack;
     ChargedAttack m_chargedAttack;
     Parade m_parade;
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour
         m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
         m_spawnPos = transform.parent.position;
+
+        m_playerStats.SetSprites(m_spController);
     }
 
     private void Update()

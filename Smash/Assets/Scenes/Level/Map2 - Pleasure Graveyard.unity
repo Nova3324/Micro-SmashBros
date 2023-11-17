@@ -207,6 +207,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1832752938}
     m_Modifications:
+    - target: {fileID: 952691304798120129, guid: fc49ad1629716744585047bbcebcf4c7, type: 3}
+      propertyPath: m_playerInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: d4032f3c1ba49fb4aae117746dcee846, type: 2}
     - target: {fileID: 4956649969386297014, guid: fc49ad1629716744585047bbcebcf4c7, type: 3}
       propertyPath: m_Name
       value: Player Animation

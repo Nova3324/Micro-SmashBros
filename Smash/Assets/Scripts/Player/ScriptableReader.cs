@@ -18,4 +18,14 @@ public class ScriptableReader : MonoBehaviour
         m_remoteAttack = m_playerInfo.m_remoteAttack;
         m_name = m_playerInfo.m_name;
     }
+
+    public void SetSprites(SpriteController sprites)
+    {
+        sprites.m_head.sprite = m_playerInfo.m_head;
+        sprites.m_body.sprite = m_playerInfo.m_body;
+        sprites.m_backHand.sprite = m_playerInfo.m_backHand;
+        sprites.m_frontHand.sprite = m_playerInfo.m_frontHand;
+        sprites.m_backFoot.sprite = m_playerInfo.m_backFoot;
+        sprites.m_frontFoot.sprite = m_playerInfo.m_frontFoot;
+    }
 }

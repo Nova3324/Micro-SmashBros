@@ -1,11 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteController : MonoBehaviour
 {
     [HideInInspector] public Animator m_animator;
     [SerializeField] private PlayerController m_playerController;
+
+    public SpriteRenderer m_head;
+    public SpriteRenderer m_body;
+    public SpriteRenderer m_backHand;
+    public SpriteRenderer m_frontHand;
+    public SpriteRenderer m_backFoot;
+    public SpriteRenderer m_frontFoot;
 
     private void Awake()
     {
