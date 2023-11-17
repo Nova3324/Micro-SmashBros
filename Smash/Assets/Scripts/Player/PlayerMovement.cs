@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] ScriptableReader m_scriptableReader;
     [SerializeField] DetectCollisions m_detectCollisions;
+    [SerializeField] SpriteController m_spriteController;
 
     private Rigidbody2D m_rigidbody;
 
@@ -69,6 +70,12 @@ public class PlayerMovement : MonoBehaviour
     public void Move(Vector2 vector2)
     {
         m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
+        m_spriteController.WalkAnimation(m_scriptableReader.m_maxSpeed);
+
+        if (vector2.x <= 0.1f && vector2.x >= -0.1f)
+        {
+            m_spriteController.m_animator.SetBool("Walk", false);
+        }
     }
 
     public void ResetTimeToReachMaxHeight()
