@@ -8,6 +8,7 @@ public class ButtonController : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("Devroom Cedric");
+        Time.timeScale = 1.0f;
     }
 
     public void Settings()

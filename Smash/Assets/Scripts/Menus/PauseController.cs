@@ -36,6 +36,7 @@ public class PauseController : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("Menu Principal");
+        Time.timeScale = 1.0f;
     }
 
     public void BackSettings()
