@@ -1,5 +1,4 @@
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerIndex % 2 == 0)
         {
-            m_UIpersonnage = Instantiate(m_pbUIpersoEven, FindObjectOfType<Canvas>().transform);
+            m_UIpersonnage = Instantiate(m_pbUIpersoEven, GameObject.Find("CanvasFront").transform);
             multiplicator = (playerIndex - 2) / 2;
             rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
             xOffset = (-rectTrs.anchoredPosition.x * 2f - rectTrs.rect.size.x) / 2f;
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            m_UIpersonnage = Instantiate(m_pbUIpersoOdd, FindObjectOfType<Canvas>().transform);
+            m_UIpersonnage = Instantiate(m_pbUIpersoOdd, GameObject.Find("CanvasFront").transform);
             multiplicator = (playerIndex - 1) / 2;
             rectTrs = m_UIpersonnage.GetComponent<RectTransform>();
             xOffset = (rectTrs.anchoredPosition.x * 2f - rectTrs.rect.size.x) / 2f;

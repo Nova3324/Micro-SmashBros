@@ -30,9 +30,13 @@ public class PlayerManager : MonoBehaviour
             if (controller != null)
             {
                 m_playerControllers.Add(controller);
-                controller.SpawnUiStats(i);
-                controller.transform.parent.gameObject.SetActive(true);
             }
         }
+    }
+
+    public void OnePlayerIsConnecting(int playerIndex)
+    {
+        m_playerControllers[playerIndex].SpawnUiStats(playerIndex);
+        m_playerControllers[playerIndex].transform.parent.gameObject.SetActive(true);
     }
 }
