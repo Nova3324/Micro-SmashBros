@@ -83,13 +83,17 @@ public class InputsController : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
+        if (m_playerController == null) { return; }
+
         if (context.performed)
             m_playerController.Pause();
     }
 
     public void Back(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (m_playerController == null) { return; }
+
+        if (context.performed)
             m_playerController.BackSettings();
     }
 }
