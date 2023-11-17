@@ -596,7 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_pbUIpersoOdd: {fileID: 3500123065091313594, guid: b804c73f47ff17f45bee03281d9ec4d2, type: 3}
   m_pbUIpersoEven: {fileID: 6359502341023657564, guid: d422fac50a36001459a353bc838a986d, type: 3}
-  m_pbEndGame: {fileID: 5100709212879535082, guid: 4a481995a938be949903f12bb72b2878, type: 3}
+  m_pbEndGame: {fileID: 5904516209468350248, guid: 4a481995a938be949903f12bb72b2878, type: 3}
 --- !u!114 &952691304798120129
 MonoBehaviour:
   m_ObjectHideFlags: 0
