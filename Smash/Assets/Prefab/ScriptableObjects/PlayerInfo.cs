@@ -9,4 +9,11 @@ public class PlayerInfo : ScriptableObject
     public float m_remoteAttack;
 
     public string m_name;
+
+    public Sprite m_head;
+    public Sprite m_body;
+    public Sprite m_backHand;
+    public Sprite m_frontHand;
+    public Sprite m_backFoot;
+    public Sprite m_frontFoot;
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ecac1fe1745284bb720166903ff35e, type: 3}
+  m_Name: PlayerWill
+  m_EditorClassIdentifier: 
+  m_mass: 70
+  m_maxSpeed: 25
+  m_basicAttack: 0
+  m_remoteAttack: 0
+  m_name: WilliamSSS
+  m_head: {fileID: 21300000, guid: 98e221a43936e12418fd604038a71633, type: 3}
+  m_body: {fileID: 21300000, guid: 2a5e7720ed7015d4f943e9a41abf6ad0, type: 3}
+  m_backHand: {fileID: 21300000, guid: 2da09a578ca0a924aafee05b597ad39b, type: 3}
+  m_frontHand: {fileID: 21300000, guid: 66e19217d7eea654dabdf28a5779640e, type: 3}
+  m_backFoot: {fileID: 21300000, guid: 971b9ff797e91724b8dc0dd118b41111, type: 3}
+  m_frontFoot: {fileID: 21300000, guid: 33af31f1ce473ec429a1d0910bae21e1, type: 3}
