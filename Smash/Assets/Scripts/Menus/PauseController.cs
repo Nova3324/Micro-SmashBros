@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,6 +26,7 @@ public class PauseController : MonoBehaviour
 
     public void Continue()
     {
+        SwitchActionMap("Game");
         m_pause.SetActive(false);
         Time.timeScale = 1.0f;
     }
@@ -54,16 +52,19 @@ public class PauseController : MonoBehaviour
     {
         if (m_pause.activeSelf)
         {
+            SwitchActionMap("Game");
             m_pause.SetActive(false);
             Time.timeScale = 1.0f;
         }
         else if(m_settings.activeSelf)
         {
+            SwitchActionMap("Game");
             m_settings.SetActive(false);
             Time.timeScale = 1.0f;
         }
         else
         {
+            SwitchActionMap("Menu");
             Time.timeScale = 0f;
             m_pause.SetActive(true);
             m_settings.SetActive(false);
@@ -72,6 +73,16 @@ public class PauseController : MonoBehaviour
 
             if (continueSelectable != null)
                 continueSelectable.Select();
+        }
+    }
+
+    private void SwitchActionMap(string actionName)
+    {
+        var playerInputs = FindObjectsOfType<InputsController>();
+
+        foreach (var playerInput in playerInputs)
+        {
+            playerInput.m_playerInput.SwitchCurrentActionMap(actionName);
         }
     }
 }

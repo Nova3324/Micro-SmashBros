@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InputsController : MonoBehaviour
 {
     //Control one player
-    private PlayerInput m_playerInput;
+    [HideInInspector] public PlayerInput m_playerInput;
     private PlayerController m_playerController;
 
 
