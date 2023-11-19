@@ -46,7 +46,9 @@ public class PlayerController : MonoBehaviour
 
         m_spawnPos = transform.parent.position;
 
+        //apply player stats
         m_playerStats.SetSprites(m_spController);
+        m_chargedAttack.m_spriteProjectile = m_playerStats.m_chargedAtkSprite;
     }
 
     private void Update()

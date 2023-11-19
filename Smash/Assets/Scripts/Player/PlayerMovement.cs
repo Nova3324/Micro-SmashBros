@@ -82,12 +82,12 @@ public class PlayerMovement : MonoBehaviour
         //flip
         if (vector2.x < 0)
         {
-            gameObject.transform.localScale = new Vector3(-1.5f, 1.75f, 1);
+            gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
             m_lastSpriteScale = gameObject.transform.localScale;
         }
         else if(vector2.x > 0)
         {
-            gameObject.transform.localScale = new Vector3(1.5f, 1.75f, 1);
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             m_lastSpriteScale = gameObject.transform.localScale;
         }
         else

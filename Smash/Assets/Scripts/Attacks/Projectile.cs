@@ -10,7 +10,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private bool m_isPassThroughPlayers;
     [SerializeField][Range(0, 100)] private int m_maxDamage; //charged max time
 
+    [Header("Components")]
     [SerializeField] private Transform m_trsHitBox;
+    [SerializeField] private SpriteRenderer m_sprite;
     private Rigidbody2D m_rb;
 
     [Header("Initial Scale")]
@@ -47,6 +49,13 @@ public class Projectile : MonoBehaviour
     }
 
     /*----------------------------------------------------------*/
+
+    public void ChangeSprite(Sprite sp)
+    {
+        if (m_sprite == null || sp == null) return;
+
+        m_sprite.sprite = sp;
+    }
 
     public void Throw(Vector2 direction, float chargeRatio, PlayerController playerController)
     {

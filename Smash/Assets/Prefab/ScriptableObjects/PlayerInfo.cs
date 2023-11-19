@@ -10,6 +10,8 @@ public class PlayerInfo : ScriptableObject
 
     public string m_name;
 
+    public Sprite m_chargedAtkSp;
+
     public Sprite m_head;
     public Sprite m_body;
     public Sprite m_backHand;

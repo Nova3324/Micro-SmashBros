@@ -17,6 +17,7 @@ MonoBehaviour:
   m_basicAttack: 0
   m_remoteAttack: 0
   m_name: Steph Goku
+  m_chargedAtkSp: {fileID: 21300000, guid: 50c72f2aa2b0784448b9f86076e240a1, type: 3}
   m_head: {fileID: 21300000, guid: 2a11f1e2f49372e4d9463cd67e48bd65, type: 3}
   m_body: {fileID: 21300000, guid: 6936bf1405811644cbb1b19022fd56ca, type: 3}
   m_backHand: {fileID: 21300000, guid: 42755b0d2e21d134f8f5efcb50aeaef2, type: 3}
