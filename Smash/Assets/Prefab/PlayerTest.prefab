@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_deltaMaxHeight: 0.5
   m_jumpCount: 0
   m_isJumping: 0
-  m_knobackDrag: 0.3
+  m_knobackDrag: 0.4
   m_currentKnockback: {x: 0, y: 0}
 --- !u!114 &6998275338227155863
 MonoBehaviour:
@@ -1208,6 +1208,7 @@ MonoBehaviour:
   m_pbProjectile: {fileID: 3249085837187150689, guid: 06e324b12cf9b0b498e7216fc79dc9f5, type: 3}
   m_maxChargeTime: 0.5
   m_refreshTime: 0.5
+  m_spriteProjectile: {fileID: 0}
   m_trsAtkOrigin: {fileID: 5314272383962320924}
 --- !u!114 &2947350436155547051
 MonoBehaviour:
