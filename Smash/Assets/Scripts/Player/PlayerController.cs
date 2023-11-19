@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     /*----------------------------------------------------------*/
 
-
     void Start()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
@@ -49,6 +48,9 @@ public class PlayerController : MonoBehaviour
         //apply player stats
         m_playerStats.SetSprites(m_spController);
         m_chargedAttack.m_spriteProjectile = m_playerStats.m_chargedAtkSprite;
+
+        //Start play
+        BecomeInvicible();
     }
 
     private void Update()
@@ -160,11 +162,14 @@ public class PlayerController : MonoBehaviour
 
     public void BecomeInvicible()
     {
-        StartCoroutine(InvincibleDuring(3f));
+        float invicibilityTime = 3f;
+        m_spController.InvicibleColor(invicibilityTime);
+        StartCoroutine(InvincibleDuring(invicibilityTime));
     }
 
     public void Stun(float duration)
     {
+        m_spController.StunColor(duration);
         StartCoroutine(CantActDuring(duration));
     }
 

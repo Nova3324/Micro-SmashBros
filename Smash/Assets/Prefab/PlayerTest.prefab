@@ -482,11 +482,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_animator: {fileID: 0}
   m_playerController: {fileID: 2459106215531452493}
+  m_stunColor:
+    serializedVersion: 2
+    rgba: 4284769380
+  m_hitColor:
+    serializedVersion: 2
+    rgba: 4278190335
   m_head: {fileID: 2548531158294080966}
   m_body: {fileID: 7924833821829784306}
   m_backHand: {fileID: 7263952492784292888}
-  m_frontHand: {fileID: 2984641501190304806}
   m_backFoot: {fileID: 4908075347953428553}
+  m_frontHand: {fileID: 2984641501190304806}
   m_frontFoot: {fileID: 2935206307502822560}
 --- !u!212 &1170634663968506692
 SpriteRenderer:
