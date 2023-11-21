@@ -11,6 +11,7 @@ public class ScriptableReader : MonoBehaviour
     [HideInInspector] public string m_name { get; private set; }
 
     [HideInInspector] public Sprite m_chargedAtkSprite { get; private set; }
+    [HideInInspector] public Sprite m_head { get; private set; }
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class ScriptableReader : MonoBehaviour
         m_name = m_playerInfo.m_name;
 
         m_chargedAtkSprite = m_playerInfo.m_chargedAtkSp;
+        m_head = m_playerInfo.m_head;
     }
 
     public void SetSprites(SpriteController sprites)
