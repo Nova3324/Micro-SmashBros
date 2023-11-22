@@ -1,9 +1,5 @@
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
 
 public class PlayerLife
 {
@@ -106,7 +102,7 @@ public class PlayerLife
 
         if (atkDirection.y >= 0)
         {
-            atkDirection += Vector3.up;
+            atkDirection += Vector3.up * 0.5f;
         }
         atkDirection.Normalize();
 

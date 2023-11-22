@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private GameObject m_UIpersonnage;
 
     [Header("Player Components")]
+    [SerializeField] private SpriteController m_spController;
     BasicAttack m_basicAttack;
     ChargedAttack m_chargedAttack;
     Parade m_parade;
@@ -30,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     /*----------------------------------------------------------*/
 
-
     void Start()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
@@ -44,6 +44,13 @@ public class PlayerController : MonoBehaviour
         m_playerLife = new PlayerLife(this, transform.parent, m_UIpersonnage);
 
         m_spawnPos = transform.parent.position;
+
+        //apply player stats
+        m_playerStats.SetSprites(m_spController);
+        m_chargedAttack.m_spriteProjectile = m_playerStats.m_chargedAtkSprite;
+
+        //Start play
+        BecomeInvicible();
     }
 
     private void Update()
@@ -155,11 +162,14 @@ public class PlayerController : MonoBehaviour
 
     public void BecomeInvicible()
     {
-        StartCoroutine(InvincibleDuring(3f));
+        float invicibilityTime = 3f;
+        m_spController.InvicibleColor(invicibilityTime);
+        StartCoroutine(InvincibleDuring(invicibilityTime));
     }
 
     public void Stun(float duration)
     {
+        m_spController.StunColor(duration);
         StartCoroutine(CantActDuring(duration));
     }
 

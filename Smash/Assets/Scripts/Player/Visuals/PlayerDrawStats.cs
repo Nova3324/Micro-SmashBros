@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDrawStats : MonoBehaviour
 {
@@ -24,6 +23,11 @@ public class PlayerDrawStats : MonoBehaviour
     {
         if (UIperso != null)
         {
+            //headImg
+            Image imgHead = UIperso.GetComponentInChildren<Image>();
+            Debug.Log(playerStats.m_head);
+            imgHead.sprite = playerStats.m_head;
+
             //texts dmg & name
             TMP_Text[] texts = UIperso.GetComponentsInChildren<TMP_Text>();
             if (texts.Count() >= 2)
@@ -32,6 +36,7 @@ public class PlayerDrawStats : MonoBehaviour
                 m_textName = texts[1];
                 m_textName.text = playerStats.m_name;
             }
+
 
             //hearts
             m_drawHearts = UIperso.GetComponentInChildren<DrawHearts>();

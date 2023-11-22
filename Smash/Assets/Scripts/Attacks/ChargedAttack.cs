@@ -7,6 +7,7 @@ public class ChargedAttack: MonoBehaviour
     [SerializeField] private GameObject m_pbProjectile;
     [SerializeField] private float m_maxChargeTime;
     [SerializeField] private float m_refreshTime;
+    [HideInInspector] public Sprite m_spriteProjectile;
 
     [Header("hit box move")]
     [SerializeField] private Transform m_trsAtkOrigin;
@@ -72,6 +73,7 @@ public class ChargedAttack: MonoBehaviour
                     m_atkDirection = Vector2.left;
                 }
 
+                projectile.ChangeSprite(m_spriteProjectile);
                 projectile.Throw(m_atkDirection, (m_currentChargeTime / m_maxChargeTime), playerController);
             }
         }

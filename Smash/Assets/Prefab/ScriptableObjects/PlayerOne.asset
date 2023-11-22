@@ -16,4 +16,10 @@ MonoBehaviour:
   m_maxSpeed: 25
   m_basicAttack: 0
   m_remoteAttack: 0
-  m_name: Steph Goku
+  m_name: Black Man
+  m_head: {fileID: 21300000, guid: ac8184c1777416040846b331a15644a0, type: 3}
+  m_body: {fileID: 21300000, guid: 8a9097024970f784e92c070f7fce80db, type: 3}
+  m_backHand: {fileID: 21300000, guid: 68e20bee2bf2a894a94565b9008f711f, type: 3}
+  m_frontHand: {fileID: 21300000, guid: 8772848a4f7ed07488d1a2237289c0d6, type: 3}
+  m_backFoot: {fileID: 21300000, guid: c46c1d73a0c5e6048965bb616b1adeaf, type: 3}
+  m_frontFoot: {fileID: 21300000, guid: b795018115919a0469407f98e151a2d6, type: 3}

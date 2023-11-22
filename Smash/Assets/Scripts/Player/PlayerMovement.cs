@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_lastSpriteScale;
 
     [Header("KnockBack")]
-    [SerializeField] private float m_knobackDrag = 0.3f;
+    [SerializeField] private float m_knobackDrag;
     [HideInInspector] public Vector2 m_currentKnockback;
     private Vector2 m_maxKnockback;
 
@@ -82,12 +82,12 @@ public class PlayerMovement : MonoBehaviour
         //flip
         if (vector2.x < 0)
         {
-            gameObject.transform.localScale = new Vector3(-1.5f, 1.75f, 1);
+            gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
             m_lastSpriteScale = gameObject.transform.localScale;
         }
         else if(vector2.x > 0)
         {
-            gameObject.transform.localScale = new Vector3(1.5f, 1.75f, 1);
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             m_lastSpriteScale = gameObject.transform.localScale;
         }
         else
@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (m_jumpCount < m_maxJump && m_isStatic == false)
+        if (m_jumpCount < m_maxJump && !m_isStatic && m_currentKnockback.y == 0)
         {
             m_timeToReachMaxHeight = m_deltaMaxHeight;
             m_jumpForce = (m_maxHeight / m_deltaMaxHeight) * 2f;
@@ -131,6 +131,11 @@ public class PlayerMovement : MonoBehaviour
     public void AddKnockBack(Vector2 velocity)
     {
         velocity *= -m_gravity.y * 0.1f;
+
+        if (m_isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0;
+        }
 
         m_maxKnockback = velocity;
         m_currentKnockback = velocity;
@@ -156,13 +161,10 @@ public class PlayerMovement : MonoBehaviour
     private void Gravity()
     {
         //can't move
-        if (m_isStatic)
+        if (m_currentKnockback.y != 0 || m_isStatic)
         {
-            if (m_currentKnockback.y == 0)
-            {
-                m_velocityY = 0;
-                m_currentGravity = Vector2.zero;
-            }
+            m_velocityY = 0;
+            m_currentGravity = Vector2.zero;
         }
         //Gravity no jump
         else if (m_isJumping == false && m_isEndJumping == false)
@@ -193,7 +195,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void KnockbackDragByAxe(float maxKb, ref float currentKb)
     {
-
         //knockack positive on axe
         if (maxKb > 0 && currentKb > 0)
         {
