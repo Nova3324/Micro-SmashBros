@@ -13,6 +13,9 @@ public class BasicAttack : MonoBehaviour
     [SerializeField] private Transform m_trsPunchOrigin;
     [SerializeField] private Transform m_trsPunchHitBox;
 
+    [Header("Components")]
+    [SerializeField] SpriteController m_spriteController;
+
     private float m_currentDuration;
     private Vector2 m_atkDirection = new();
 
@@ -46,6 +49,7 @@ public class BasicAttack : MonoBehaviour
         }
 
         StartCoroutine(MovePunchHitbox(m_atkDirection));
+        m_spriteController.m_animator.SetBool("Left Attack", true);
     }
 
     /*----------------------------------------------------------*/
@@ -55,6 +59,7 @@ public class BasicAttack : MonoBehaviour
         StopAllCoroutines();
         m_trsPunchHitBox.position = m_trsPunchOrigin.position;
         m_trsPunchHitBox.gameObject.SetActive(false);
+        m_spriteController.m_animator.SetBool("Left Attack", false);
     }
     private IEnumerator MovePunchHitbox(Vector3 dir)
     {
