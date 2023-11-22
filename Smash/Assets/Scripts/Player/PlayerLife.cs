@@ -16,7 +16,7 @@ public class PlayerLife
     private int m_life = 3;
 
     //damage
-    public bool m_isInvicible;
+    public bool m_isInvicible { get; set; }
     private int m_damageTaken = 0;
 
     //knockback

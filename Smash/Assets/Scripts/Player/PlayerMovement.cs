@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -36,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_knobackDrag;
     [HideInInspector] public Vector2 m_currentKnockback;
     private Vector2 m_maxKnockback;
+
+    [Header("Dash")]
+    [SerializeField] private float m_dashDuration;
+    private float m_dashMultiplicator = 3f;
+    private float m_dashSpeed;
 
     /*----------------------------------------------------------*/
 
@@ -156,6 +162,12 @@ public class PlayerMovement : MonoBehaviour
         m_isEndJumping = false;
     }
 
+    public void CallDash(PlayerController playerController)
+    {
+        GameObject gameObject = GameObject.Find("Sprites");
+        StartCoroutine(Dash(gameObject.transform.localScale, playerController));
+    }
+
     /*----------------------------------------------------------*/
 
     private void Gravity()
@@ -228,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            m_rigidbody.velocity = new Vector2(m_currentKnockback.x, m_velocityY + m_currentKnockback.y);
+            m_rigidbody.velocity = new Vector2(m_currentKnockback.x + m_dashSpeed, m_velocityY + m_currentKnockback.y);
         }
     }
 
@@ -243,5 +255,23 @@ public class PlayerMovement : MonoBehaviour
                 m_isJumping = false;
             }
         }
+    }
+
+    private IEnumerator Dash(Vector2 direction, PlayerController playerController)
+    {
+        m_dashSpeed = direction.x * m_scriptableReader.m_maxSpeed * m_dashMultiplicator;
+
+        m_isStatic = true;
+        playerController.m_isCanAct = false;
+        playerController.m_playerLife.m_isInvicible = true;
+        Debug.Log("Dash");
+
+        yield return new WaitForSeconds(m_dashDuration);
+
+        m_isStatic = false;
+        playerController.m_isCanAct = true;
+        playerController.m_playerLife.m_isInvicible = false;
+
+        m_dashSpeed = 0f;
     }
 }

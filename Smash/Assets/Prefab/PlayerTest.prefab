@@ -1182,6 +1182,7 @@ MonoBehaviour:
   m_isJumping: 0
   m_knobackDrag: 0.4
   m_currentKnockback: {x: 0, y: 0}
+  m_dashDuration: 0.2
 --- !u!114 &6998275338227155863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1245,7 @@ MonoBehaviour:
   m_pbUIpersoEven: {fileID: 6359502341023657564, guid: d422fac50a36001459a353bc838a986d, type: 3}
   m_pbEndGame: {fileID: 5904516209468350248, guid: 4a481995a938be949903f12bb72b2878, type: 3}
   m_spController: {fileID: 4664839044173714820}
+  m_isCanAct: 1
 --- !u!114 &952691304798120129
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -96,5 +96,11 @@ public class InputsController : MonoBehaviour
         if (context.performed)
             m_playerController.BackSettings();
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            m_playerController.Dash();
+    }
 }
 

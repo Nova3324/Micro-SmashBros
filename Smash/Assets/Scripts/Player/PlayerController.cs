@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     //respawn
     [HideInInspector] public Vector3 m_spawnPos { get; private set; }
 
-    private bool m_isCanAct = true;
+    [HideInInspector] public bool m_isCanAct = true;
 
     /*----------------------------------------------------------*/
 
@@ -155,6 +155,14 @@ public class PlayerController : MonoBehaviour
         if (m_isCanAct)
         {
             m_chargedAttack.LaunchAtk();
+        }
+    }
+
+    public void Dash()
+    {
+        if (m_isCanAct)
+        {
+            m_playerMovement.CallDash(this);
         }
     }
 
