@@ -1848,7 +1848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "St\xE9phan BERNON\nWilliams FORTAGE"
+  m_text: "St\xE9phane BERNON\nWilliams FORTAGE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e59f0350fc5e73c4581bd8955f6b8e9b, type: 2}
   m_sharedMaterial: {fileID: -4247900938409341273, guid: e59f0350fc5e73c4581bd8955f6b8e9b, type: 2}
