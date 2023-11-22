@@ -49,7 +49,24 @@ public class BasicAttack : MonoBehaviour
         }
 
         StartCoroutine(MovePunchHitbox(m_atkDirection));
-        m_spriteController.m_animator.SetBool("Left Attack", true);
+
+        //anima tion
+        if(m_atkDirection == Vector2.right || m_atkDirection == Vector2.left)
+        {
+            int a = Random.Range(0, 2);
+            if(a == 0)
+                m_spriteController.m_animator.SetBool("Left Attack", true);
+            else if(a == 1)
+                m_spriteController.m_animator.SetBool("Right Attack", true);
+        }    
+        else if(m_atkDirection == Vector2.up)
+        {
+            m_spriteController.m_animator.SetBool("Up Attack", true);
+        }
+        else if(m_atkDirection == Vector2.down)
+        {
+            m_spriteController.m_animator.SetBool("Down Attack", true);
+        }
     }
 
     /*----------------------------------------------------------*/
@@ -59,7 +76,12 @@ public class BasicAttack : MonoBehaviour
         StopAllCoroutines();
         m_trsPunchHitBox.position = m_trsPunchOrigin.position;
         m_trsPunchHitBox.gameObject.SetActive(false);
+        
+        //animations
         m_spriteController.m_animator.SetBool("Left Attack", false);
+        m_spriteController.m_animator.SetBool("Right Attack", false);
+        m_spriteController.m_animator.SetBool("Up Attack", false);
+        m_spriteController.m_animator.SetBool("Down Attack", false);
     }
     private IEnumerator MovePunchHitbox(Vector3 dir)
     {
