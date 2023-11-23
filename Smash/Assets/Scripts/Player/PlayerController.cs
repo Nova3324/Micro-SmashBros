@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
         {
             m_basicAttack.SetAttackDirection(direction);
             m_chargedAttack.SetAttackDirection(direction);
+            m_playerMovement.FlipPlayer(direction);
         }
     }
 

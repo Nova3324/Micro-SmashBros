@@ -69,8 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 vector2)
     {
-        GameObject gameObject = GameObject.Find("Sprites");
-
         m_lateralMove = vector2.x * m_scriptableReader.m_maxSpeed;
         m_spriteController.WalkAnimation(m_scriptableReader.m_maxSpeed);
 
@@ -78,24 +76,29 @@ public class PlayerMovement : MonoBehaviour
         {
             m_spriteController.m_animator.SetBool("Walk", false);
         }
+    }
 
-        //flip
-        if (vector2.x < 0)
+    public void FlipPlayer(Vector2 vector2)
+    {
+        if (vector2.magnitude <= 1 && vector2.magnitude > 0)
         {
-            gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
-            m_lastSpriteScale = gameObject.transform.localScale;
+            GameObject obj = GameObject.Find("Sprites");
+            if (vector2.x == -1)
+            {
+                obj.transform.localScale = new Vector3(-1f, 1f, 1f);
+                m_lastSpriteScale = obj.transform.localScale;
+                Debug.Log(vector2);
+            }
+            else if (vector2.x == 1)
+            {
+                obj.transform.localScale = new Vector3(1f, 1f, 1f);
+                m_lastSpriteScale = obj.transform.localScale;
+            }
+            else
+            {
+                obj.transform.localScale = m_lastSpriteScale;
+            }
         }
-        else if(vector2.x > 0)
-        {
-            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            m_lastSpriteScale = gameObject.transform.localScale;
-        }
-        else
-        {
-            gameObject.transform.localScale = m_lastSpriteScale;
-        }
-
-
     }
 
     public void ResetTimeToReachMaxHeight()

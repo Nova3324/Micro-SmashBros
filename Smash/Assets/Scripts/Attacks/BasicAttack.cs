@@ -44,13 +44,13 @@ public class BasicAttack : MonoBehaviour
         //Atk where player look
         if (m_atkDirection == Vector2.zero)
         {
-            //TODO where player look
-            m_atkDirection = Vector2.left;
+            GameObject gameObject = GameObject.Find("Sprites");
+            m_atkDirection = gameObject.transform.localScale * Vector2.right;
         }
 
-        StartCoroutine(MovePunchHitbox(m_atkDirection));
+        StartCoroutine(MovePunchHitbox());
 
-        //anima tion
+        //animation
         if(m_atkDirection == Vector2.right || m_atkDirection == Vector2.left)
         {
             int a = Random.Range(0, 2);
@@ -83,13 +83,13 @@ public class BasicAttack : MonoBehaviour
         m_spriteController.m_animator.SetBool("Up Attack", false);
         m_spriteController.m_animator.SetBool("Down Attack", false);
     }
-    private IEnumerator MovePunchHitbox(Vector3 dir)
+    private IEnumerator MovePunchHitbox()
     {
         m_trsPunchHitBox.gameObject.SetActive(true);
         m_currentDuration = 0;
         if (m_trsPunchHitBox.TryGetComponent(out HitBoxDealDamage hitBoxScript))
         {
-            hitBoxScript.SetAttacker(GetComponent<PlayerController>(), dir);
+            hitBoxScript.SetAttacker(GetComponent<PlayerController>(), m_atkDirection);
             hitBoxScript.m_atkDamage = m_damage;
         }
 
@@ -100,7 +100,7 @@ public class BasicAttack : MonoBehaviour
             float m_lerpIndex = m_currentDuration / m_atkDuration;
             m_lerpIndex = Mathf.Clamp01(m_lerpIndex);
 
-            m_trsPunchHitBox.position = Vector3.Lerp(m_trsPunchOrigin.position, m_trsPunchOrigin.position + dir * m_range, m_lerpIndex);
+            m_trsPunchHitBox.position = Vector3.Lerp(m_trsPunchOrigin.position, m_trsPunchOrigin.position + (Vector3)m_atkDirection * m_range, m_lerpIndex);
 
             //stop punch at end of movement
             if (m_lerpIndex == 1)
