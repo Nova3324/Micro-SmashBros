@@ -1182,7 +1182,8 @@ MonoBehaviour:
   m_isJumping: 0
   m_knobackDrag: 0.4
   m_currentKnockback: {x: 0, y: 0}
-  m_dashDuration: 0.2
+  m_dashDuration: 0.1
+  m_dashDist: 2
 --- !u!114 &6998275338227155863
 MonoBehaviour:
   m_ObjectHideFlags: 0

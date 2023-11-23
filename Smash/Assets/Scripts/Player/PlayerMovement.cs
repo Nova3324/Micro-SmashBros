@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] private float m_dashDuration;
-    private float m_dashMultiplicator = 3f;
+    [SerializeField] private float m_dashDist;
     private float m_dashSpeed;
 
     /*----------------------------------------------------------*/
@@ -259,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash(Vector2 direction, PlayerController playerController)
     {
-        m_dashSpeed = direction.x * m_scriptableReader.m_maxSpeed * m_dashMultiplicator;
+        m_dashSpeed = direction.x * (m_dashDist / m_dashDuration);
 
         m_isStatic = true;
         playerController.m_isCanAct = false;
