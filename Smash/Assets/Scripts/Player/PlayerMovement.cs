@@ -87,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 obj.transform.localScale = new Vector3(-1f, 1f, 1f);
                 m_lastSpriteScale = obj.transform.localScale;
-                Debug.Log(vector2);
             }
             else if (vector2.x == 1)
             {
@@ -224,10 +223,18 @@ public class PlayerMovement : MonoBehaviour
         {
             //air movements
             if (!m_isGrounded)
+            {
                 m_rigidbody.velocity = new Vector2(m_currentKnockback.x + m_lateralMove * m_airDrag, m_velocityY + m_currentKnockback.y);
+                
+                //animation
+                m_spriteController.m_animator.SetBool("Jump", true);
+            }
             //grounded movements
             else
+            {
                 m_rigidbody.velocity = new Vector2(m_currentKnockback.x + m_lateralMove, m_velocityY + m_currentKnockback.y);
+                m_spriteController.m_animator.SetBool("Jump", false);
+            }
         }
         else
         {

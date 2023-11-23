@@ -29,6 +29,11 @@ public class SpriteController : MonoBehaviour
 
     /*----------------------------------------------------------*/
 
+    public void StopUpLaunchAtack() 
+    {
+        m_animator.SetBool("Up Launch Attack", false);
+    }
+
     public void WalkAnimation(float speed)
     {
         m_animator.SetBool("Walk", true);

@@ -12,6 +12,9 @@ public class ChargedAttack: MonoBehaviour
     [Header("hit box move")]
     [SerializeField] private Transform m_trsAtkOrigin;
 
+    [Header("Components")]
+    [SerializeField] SpriteController m_spriteController;
+
     private bool m_isCharging;
     private bool m_isCanCharge = true;
     private float m_currentChargeTime;
@@ -49,6 +52,8 @@ public class ChargedAttack: MonoBehaviour
 
             PlayerController playerController = GetComponent<PlayerController>();
             playerController.m_playerMovement.m_isStatic = true;
+            //animation
+            m_spriteController.m_animator.SetBool("Charged Attack", true);
         }
     }
 
@@ -56,6 +61,9 @@ public class ChargedAttack: MonoBehaviour
     {
         if (m_isCharging)
         {
+            //animation
+            m_spriteController.m_animator.SetBool("Charged Attack", false);
+
             PlayerController playerController = GetComponent<PlayerController>();
             playerController.m_playerMovement.m_isStatic = false;
 
