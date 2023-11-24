@@ -2,17 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class DisconnectedGamepad : MonoBehaviour
 {
-    [SerializeField] private PostProcessVolume m_postProcessVolume;
-    [SerializeField] private Animator m_animator;
+    public PostProcessVolume m_postProcessVolume;
+    public Animator m_animator;
     public GameObject m_disconnectedPopup;
-
-    private void Start()
-    {
-        
-    }
 
     void Update()
     {
