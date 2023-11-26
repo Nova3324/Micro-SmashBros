@@ -9,6 +9,7 @@ public class DisconnectedGamepad : MonoBehaviour
     public PostProcessVolume m_postProcessVolume;
     public Animator m_animator;
     public GameObject m_disconnectedPopup;
+    [SerializeField] private PopupDisconnectedController m_popupDisconnectedController;
 
     void Update()
     {

@@ -1182,6 +1182,7 @@ MonoBehaviour:
   m_isJumping: 0
   m_knobackDrag: 0.4
   m_currentKnockback: {x: 0, y: 0}
+  m_playerSprite: {fileID: 4581768262556262252}
 --- !u!114 &6998275338227155863
 MonoBehaviour:
   m_ObjectHideFlags: 0

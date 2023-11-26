@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using System.Linq;
 
 public class InputsController : MonoBehaviour
 {
@@ -7,13 +10,25 @@ public class InputsController : MonoBehaviour
     [HideInInspector] public PlayerInput m_playerInput;
     private PlayerController m_playerController;
 
-
     public Vector2 joystick;
+
+    public static InputsController Instance;
 
     /*---------------------------------------------------------GAME---------------------------------------------------------*/
     void Awake()
     {
         m_playerInput = GetComponent<PlayerInput>();
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.Log("This manager script exist two time");
+            Destroy(this);
+            return;
+        }
 
     }
 

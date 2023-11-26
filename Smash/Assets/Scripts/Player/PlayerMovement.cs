@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] ScriptableReader m_scriptableReader;
     [SerializeField] DetectCollisions m_detectCollisions;
     [SerializeField] SpriteController m_spriteController;
@@ -36,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_knobackDrag;
     [HideInInspector] public Vector2 m_currentKnockback;
     private Vector2 m_maxKnockback;
+
+    [Header("Sprite")]
+    [SerializeField] private GameObject m_playerSprite;
 
     /*----------------------------------------------------------*/
 
@@ -82,20 +86,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (vector2.magnitude <= 1 && vector2.magnitude > 0)
         {
-            GameObject obj = GameObject.Find("Sprites");
             if (vector2.x == -1)
             {
-                obj.transform.localScale = new Vector3(-1f, 1f, 1f);
-                m_lastSpriteScale = obj.transform.localScale;
+                m_playerSprite.transform.localScale = new Vector3(-1f, 1f, 1f);
+                m_lastSpriteScale = m_playerSprite.transform.localScale;
             }
             else if (vector2.x == 1)
             {
-                obj.transform.localScale = new Vector3(1f, 1f, 1f);
-                m_lastSpriteScale = obj.transform.localScale;
+                m_playerSprite.transform.localScale = new Vector3(1f, 1f, 1f);
+                m_lastSpriteScale = m_playerSprite.transform.localScale;
             }
             else
             {
-                obj.transform.localScale = m_lastSpriteScale;
+                m_playerSprite.transform.localScale = m_lastSpriteScale;
             }
         }
     }
