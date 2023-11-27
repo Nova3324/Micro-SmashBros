@@ -1,62 +1,62 @@
-using System.Threading;
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FadeLogo : MonoBehaviour
 {
-    [SerializeField] GameObject m_LogoLaHorde;
-    CanvasGroup m_Logo;
-    private bool m_fadeIn;
-    private bool m_fadeOut;
-    private float m_timer;
-    
-    void Start()
-    {
-        m_fadeIn = true;
-        m_fadeOut = false;
+    [SerializeField] private List<CanvasGroup> m_objectsToFade = new List<CanvasGroup>();
+    [SerializeField] private float m_FadeInDuration, m_fadeOutDuration, m_AttendanceTime, m_WaitBeforeStart;
 
-        m_Logo = GetComponent<CanvasGroup>();
+    private void Start()
+    {
+        StartCoroutine(StartFadeSequence());
     }
 
-    void Update()
+    private IEnumerator StartFadeSequence()
     {
-        if(m_LogoLaHorde.activeSelf == true)
+        yield return new WaitForSeconds(m_WaitBeforeStart);
+        StartCoroutine(FadeSequence());
+    }
+    private IEnumerator FadeSequence()
+    {
+        foreach (CanvasGroup canvasGroup in m_objectsToFade)
         {
-            if (m_timer >= 0.5)
+            yield return StartCoroutine(FadeCanvasGroup(canvasGroup, 1f, m_FadeInDuration));
+
+            yield return new WaitForSeconds(m_AttendanceTime);
+
+            if (canvasGroup != m_objectsToFade[m_objectsToFade.Count - 1] || m_objectsToFade.Count == 1)
+                yield return StartCoroutine(FadeCanvasGroup(canvasGroup, 0f, m_fadeOutDuration));
+        }
+    }
+
+    private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float targetAlpha, float duration)
+    {
+        float startAlpha = canvasGroup.alpha;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        canvasGroup.alpha = targetAlpha;
+        //Setactive false all objects of the list
+        if (targetAlpha == 0f)
+        {
+            if (canvasGroup != m_objectsToFade[m_objectsToFade.Count - 1] || m_objectsToFade.Count == 1)
             {
-                if (m_fadeIn)
-                    ShowLogo();
-                else if (m_fadeOut)
-                    HideLogo();
+                canvasGroup.gameObject.SetActive(false);
+                LoadScene();
             }
-            
-            TimeBeforeFade();
         }
     }
 
-    private void TimeBeforeFade()
+    private void LoadScene()
     {
-        m_timer += Time.deltaTime;
-    }
-
-    private void ShowLogo()
-    {
-        m_Logo.alpha += 1f * Time.deltaTime;
-
-        if (m_Logo.alpha >= 1 && m_timer >= 2f)
-        {
-            m_fadeIn = false;
-            m_fadeOut = true;
-        }
-    }
-
-    private void HideLogo()
-    {
-        m_Logo.alpha -= 1f * Time.deltaTime;
-        if (m_Logo.alpha <= 0)
-        {
-            m_LogoLaHorde.SetActive(false);
-            SceneManager.LoadScene("Menu Principal");
-        }
+        SceneManager.LoadScene("Menu Principal");
     }
 }
