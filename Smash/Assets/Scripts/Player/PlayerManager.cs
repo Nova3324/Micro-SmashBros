@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     public List<PlayerController> m_playerControllers { get; set; } = new();
+    public Dictionary<PlayerController, InputsController> m_inputsControllers = new();
 
     private void Awake()
     {

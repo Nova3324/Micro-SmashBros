@@ -41,6 +41,8 @@ public class InputsController : MonoBehaviour
         {
             TxtButtonStartGame.instance.OnePlayerConnected();
         }
+
+        PlayerManager.Instance.m_inputsControllers.TryAdd(m_playerController, this);
     }
 
     public void OnMove(InputAction.CallbackContext context)

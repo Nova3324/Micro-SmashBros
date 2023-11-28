@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 929250917}
   - component: {fileID: 929250919}
   - component: {fileID: 929250918}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,12 +729,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8171360245224174420, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8760419566788673590, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -224.00061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3650551121044490348, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9677d7a871a00149ae0f115c3099457, type: 3}
